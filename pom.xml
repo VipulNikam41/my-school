@@ -24,6 +24,7 @@
         <version.postgres>42.6.0</version.postgres>
         <version.flyway>9.16.3</version.flyway>
         <version.mapper>1.4.2.Final</version.mapper>
+        <version.junit>4.13.1</version.junit>
     </properties>
 
     <dependencies>
@@ -60,7 +61,13 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>${version.mapper}</version> <!-- Use the latest version -->
+            <version>${version.mapper}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
