@@ -1,25 +1,39 @@
 pipeline {
     agent any
+    environment {
+        MVN_VERSION = '3.9.4'
+    }
     tools {
         maven 'Maven'
     }
     stages {
-        stage("build") {
+        stage("Building Project") {
             steps {
-                echo 'building application'
+                echo "Building application with mvn version ${MVN_VERSION}"
                 sh 'mvn clean -Dmaven.test.skip=true install'
             }
         }
-        stage("test") {
+        stage("Running Tests") {
             steps {
                 echo 'testing application'
                 sh 'mvn test'
             }
         }
-        stage("deploying") {
+        stage("SonarQube Analysis") {
             steps {
-                echo 'deploying application'
+                echo 'TODO'
             }
+        }
+    }
+    post {
+        always {
+            echo 'Process completed'
+        }
+        failure {
+            echo 'Failure. Need to send email notification'
+        }
+        success {
+            echo 'Success. Need to send push notification'
         }
     }
 }
