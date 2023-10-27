@@ -1,4 +1,4 @@
-package com.myscool.domain.dto;
+package com.myschool.domain.dto;
 
 import lombok.Data;
 

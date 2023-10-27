@@ -1,8 +1,8 @@
-package com.myscool.controller;
+package com.myschool.controller;
 
-import com.myscool.domain.entities.UserProfile;
-import com.myscool.domain.repository.UserProfileRepo;
-import com.myscool.service.InstituteService;
+import com.myschool.domain.entities.UserProfile;
+import com.myschool.domain.repository.UserProfileRepo;
+import com.myschool.service.InstituteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

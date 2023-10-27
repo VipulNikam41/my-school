@@ -1,6 +1,6 @@
-package com.myscool.domain.dto;
+package com.myschool.domain.dto;
 
-import com.myscool.domain.entities.Contact;
+import com.myschool.domain.entities.Contact;
 import lombok.Data;
 
 import java.sql.Date;

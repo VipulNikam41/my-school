@@ -1,4 +1,4 @@
-package com.myscool.constants;
+package com.myschool.constants;
 
 public enum UserRole {
     STUDENT,

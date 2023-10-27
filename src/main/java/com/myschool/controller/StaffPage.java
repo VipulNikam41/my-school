@@ -1,4 +1,4 @@
-package com.myscool.controller;
+package com.myschool.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-package com.myscool.domain.entities;
+package com.myschool.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

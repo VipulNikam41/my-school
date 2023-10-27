@@ -1,4 +1,4 @@
-package com.myscool.domain.entities.cached;
+package com.myschool.domain.entities.cached;
 
 import lombok.Data;
 

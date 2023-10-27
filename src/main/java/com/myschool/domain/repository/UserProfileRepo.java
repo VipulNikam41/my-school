@@ -1,6 +1,6 @@
-package com.myscool.domain.repository;
+package com.myschool.domain.repository;
 
-import com.myscool.domain.entities.UserProfile;
+import com.myschool.domain.entities.UserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

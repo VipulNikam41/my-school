@@ -1,7 +1,7 @@
-package com.myscool.controller;
+package com.myschool.controller;
 
-import com.myscool.domain.dto.InstituteDTO;
-import com.myscool.service.InstituteService;
+import com.myschool.domain.dto.InstituteDTO;
+import com.myschool.service.InstituteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,6 @@
-package com.myscool.domain.entities;
+package com.myschool.domain.entities;
 
-import com.myscool.domain.entities.cached.CourseCategory;
+import com.myschool.domain.entities.cached.CourseCategory;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

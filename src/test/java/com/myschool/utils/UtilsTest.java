@@ -1,4 +1,4 @@
-package com.myscool.utils;
+package com.myschool.utils;
 
 import org.junit.Test;
 

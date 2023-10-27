@@ -1,7 +1,7 @@
-package com.myscool.domain.dto;
+package com.myschool.domain.dto;
 
-import com.myscool.constants.UserRole;
-import com.myscool.domain.entities.Contact;
+import com.myschool.constants.UserRole;
+import com.myschool.domain.entities.Contact;
 import lombok.Data;
 
 import java.util.UUID;

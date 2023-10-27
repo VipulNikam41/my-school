@@ -1,7 +1,7 @@
-package com.myscool.domain.mapper;
+package com.myschool.domain.mapper;
 
-import com.myscool.domain.dto.InstituteDTO;
-import com.myscool.domain.entities.Institute;
+import com.myschool.domain.dto.InstituteDTO;
+import com.myschool.domain.entities.Institute;
 import org.mapstruct.Mapper;
 
 @Mapper
