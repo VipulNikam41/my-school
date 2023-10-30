@@ -7,6 +7,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: my_school
   d-pgadmin:
     image: dpage/pgadmin4
     ports:
