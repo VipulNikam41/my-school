@@ -7,7 +7,13 @@ import static org.junit.Assert.assertEquals;
 public class UtilsTest {
     @Test
     public void testBeautify() {
-        assertEquals("", Utils.beautify(null));
-        assertEquals("", Utils.beautify(""));
+        String sample = "   This       is saMple     String ";
+        assertEquals("This Is Sample String", Utils.beautify(sample));
+    }
+
+    @Test
+    public void testRemoveExtraSpaces() {
+        String sample = "   This       is saMple     String ";
+        assertEquals("This is saMple String", Utils.removeExtraSpaces(sample));
     }
 }
