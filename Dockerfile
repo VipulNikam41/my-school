@@ -20,8 +20,8 @@ RUN ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn
 RUN mkdir -p /home/app
 
 COPY src /home/app/src
-COPY pom.xml /home/app/
-COPY flyway.conf /home/app/
+COPY pom.xml /home/app/pom.xml
+COPY flyway.conf /home/app/flyway.conf
 
 WORKDIR /home/app
 
