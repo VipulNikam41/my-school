@@ -7,6 +7,7 @@ import com.myschool.domain.mapper.UserProfileMapper;
 import com.myschool.domain.repository.UserProfileRepo;
 import com.myschool.response.GetUserResponse;
 import com.myschool.utils.Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserProfileService {
     @Autowired
     private UserProfileRepo userRepo;
@@ -22,6 +24,7 @@ public class UserProfileService {
 
     @Loggable
     public GetUserResponse getUserById(UUID id) {
+        log.info("Returning user info for user " + id);
         GetUserResponse getUserResponse = new GetUserResponse();
         Optional<UserProfile> userProfile = userRepo.findById(id);
 
