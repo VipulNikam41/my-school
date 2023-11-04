@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class InstituteService {
     @Autowired
     private InstituteRepo instituteRepo;
+    @Autowired
     private InstituteMapper instituteMapper;
 
     public void validateAndAdd(InstituteDTO instituteDTO) {
