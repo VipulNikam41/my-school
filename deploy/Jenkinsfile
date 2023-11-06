@@ -7,22 +7,18 @@ pipeline {
     }
     agent any
     environment {
-        MVN_VERSION = '3.6.3'
         ECR_REPO = '728976844027.dkr.ecr.ap-south-1.amazonaws.com'
-    }
-    tools {
-        maven 'Maven'
     }
     stages {
         stage("Build") {
             steps {
-                echo "Building application with mvn version ${MVN_VERSION}"
+                echo "Building application with mvn"
                 sh 'mvn clean -Dmaven.test.skip=true install'
             }
         }
         stage("Test") {
             steps {
-                echo 'testing application'
+                echo 'Running Junit test cases'
                 sh 'mvn test'
             }
         }
