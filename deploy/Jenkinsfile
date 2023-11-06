@@ -1,27 +1,35 @@
 pipeline {
+    options {
+        timestamps()
+    }
+    parameters {
+        string(name: 'IMAGE_VERSION', defaultValue: 'latest', description: 'docker image default version')
+    }
     agent any
     environment {
-        MVN_VERSION = '3.9.4'
-    }
-    tools {
-        maven 'Maven'
+        ECR_REPO = '728976844027.dkr.ecr.ap-south-1.amazonaws.com'
     }
     stages {
-        stage("Building Project") {
+        stage("Build") {
             steps {
-                echo "Building application with mvn version ${MVN_VERSION}"
+                echo "Building application with mvn"
                 sh 'mvn clean -Dmaven.test.skip=true install'
             }
         }
-        stage("Running Tests") {
+        stage("Test") {
             steps {
-                echo 'testing application'
+                echo 'Running Junit test cases'
                 sh 'mvn test'
             }
         }
         stage("SonarQube Analysis") {
             steps {
                 echo 'TODO'
+            }
+        }
+        stage("Containerize") {
+            steps {
+                echo "$ECR_REPO and $IMAGE_VERSION"
             }
         }
     }
