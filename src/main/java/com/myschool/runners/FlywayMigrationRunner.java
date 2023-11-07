@@ -15,7 +15,6 @@ public class FlywayMigrationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        System.out.println("migrating db");
         flyway.migrate();
     }
 }

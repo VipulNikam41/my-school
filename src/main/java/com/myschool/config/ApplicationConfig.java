@@ -1,19 +1,22 @@
 package com.myschool.config;
 
 import org.flywaydb.core.Flyway;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
 public class ApplicationConfig {
+    @Autowired
+    private Environment environment;
+
     @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
     @Value("${spring.datasource.url}")
@@ -23,13 +26,13 @@ public class ApplicationConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
-    @Value("${flyway.schemas}")
+    @Value("${spring.flyway.schemas}")
     private String flywaySchema;
-    @Value("${flyway.locations}")
+    @Value("${spring.flyway.locations}")
     private String flywayLocation;
-    @Value("${flyway.cleanDisabled}")
+    @Value("${spring.flyway.cleanDisabled}")
     private boolean flywayClean;
-    @Value("${flyway.enabled}")
+    @Value("${spring.flyway.enabled}")
     private boolean flywayEnabled;
 
     @Bean
@@ -39,6 +42,8 @@ public class ApplicationConfig {
 
     @Bean
     public DataSource dataSource() {
+        System.out.println("QQQ: " + environment);
+        System.out.println("QQQ: " + url);
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
