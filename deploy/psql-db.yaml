@@ -14,3 +14,14 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: root@pgadmin.org
       PGADMIN_DEFAULT_PASSWORD: 1234
+  d-jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins-dind
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JENKINS_OPTS="--prefix=/jenkins"
