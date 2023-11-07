@@ -26,7 +26,6 @@ COPY flyway.conf /home/app/flyway.conf
 WORKDIR /home/app
 
 RUN mvn clean install
-RUN mvn flyway:migrate
 
 WORKDIR /home/app
 
