@@ -11,4 +11,6 @@ COPY target/MySchool.jar /home/app/MySchool.jar
 
 WORKDIR /home/app
 
-CMD ["java", "-jar", "/home/app/MySchool.jar"]
+ENV SPRING_PROFILES_ACTIVE=dev
+
+CMD ["java", "-jar", "/home/app/MySchool.jar", "--spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
