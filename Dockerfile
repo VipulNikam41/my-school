@@ -11,4 +11,4 @@ COPY target/MySchool.jar /home/app/MySchool.jar
 
 WORKDIR /home/app
 
-CMD ["java", "-jar", "target/MySchool.jar"]
+CMD ["java", "-jar", "/home/app/MySchool.jar"]
