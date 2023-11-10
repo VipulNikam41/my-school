@@ -7,7 +7,6 @@ import java.util.Date;
 
 @MappedSuperclass
 @Data
-@Inheritance(strategy = InheritanceType.JOINED)
 public class BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;

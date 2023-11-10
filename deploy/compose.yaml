@@ -1,0 +1,8 @@
+version: '3'
+services:
+  d-my-school:
+    image: ${IMAGE_NAME}
+    ports:
+      - 1234:1234
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
