@@ -4,16 +4,20 @@ pipeline {
     }
     parameters {
         string(name: 'IMAGE_VERSION', defaultValue: 'latest', description: 'docker image default version')
+        choice(name: 'CONTAINERIZE', choices: ['Yes', 'No'], description: 'create docker container and push it to ecr')
+        string(name: 'AWS_INSTANCE', description: 'aws instance Where container should be deployed')
     }
     agent any
     environment {
         ECR_REPO = '728976844027.dkr.ecr.ap-south-1.amazonaws.com'
+        PRIVATE_AUTH_KEY = '/usr/auth/instance.pem'
     }
     stages {
         stage("Build") {
             steps {
                 echo "Building application with mvn"
                 sh 'mvn clean -Dmaven.test.skip=true install'
+                echo "Build complete"
             }
         }
         stage("Test") {
