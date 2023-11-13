@@ -1,16 +1,17 @@
 package com.myschool.domain.dto;
 
-import com.myschool.constants.UserRole;
 import com.myschool.domain.entities.Contact;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class UserProfileDTO extends BaseDTO {
+@Builder
+public class UserProfileResponse extends BaseResponse {
     private UUID id;
     private String name;
     private Contact contact;
     private String dateOfBirth;
-    private UserRole primaryGoal;
+    private String primaryGoal;
 }

@@ -1,12 +1,13 @@
 package com.myschool.controller;
 
-import com.myschool.domain.dto.InstituteDTO;
+import com.myschool.domain.dto.InstituteRequest;
+import com.myschool.domain.dto.UserProfileResponse;
 import com.myschool.service.InstituteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/institute")
@@ -15,8 +16,13 @@ public class InstitutePage {
     private final InstituteService service;
 
     @PostMapping("/add")
-    public boolean addInstitute(@RequestBody InstituteDTO instituteDTO) {
-        service.validateAndAdd(instituteDTO);
+    public boolean addInstitute(@RequestBody InstituteRequest request) {
+        service.validateAndAdd(request);
         return true;
+    }
+
+    @GetMapping("/get/students")
+    public List<UserProfileResponse> getAllInstituteStudent(UUID instituteId) {
+        return service.getStudentsForInstitute(instituteId);
     }
 }

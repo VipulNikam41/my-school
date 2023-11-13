@@ -13,6 +13,6 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
     @Before("execution(* com.myschool.*.*(..)) && @annotation(loggable)")
     public void logMethodCall(JoinPoint joinPoint, Loggable loggable) {
-        log.info("this will run for method which is annotated with loggable");
+        log.info("This will run for method which is annotated with loggable");
     }
 }

@@ -15,8 +15,8 @@ public class FlywayMigrationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        log.info(this.getClass().getSimpleName()+ ", Running flyway migration");
+        log.info("{}, Running flyway migration", this.getClass().getSimpleName());
         flyway.migrate();
-        log.info(this.getClass().getSimpleName() + ", Flyway migration completed");
+        log.info("{}, Flyway migration completed", this.getClass().getSimpleName());
     }
 }

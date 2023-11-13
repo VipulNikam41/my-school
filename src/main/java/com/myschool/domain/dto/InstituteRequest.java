@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Data
-public class InstituteDTO {
+public class InstituteRequest {
     private String name;
     private String userName;
     private String motto;
