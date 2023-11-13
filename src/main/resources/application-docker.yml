@@ -16,3 +16,10 @@ spring:
     schemas: public
     locations: classpath:db/migration
     cleanDisabled: false
+
+logging:
+  file: logs.log
+  level: INFO
+  hibernate:
+    file: hibernate.log
+    level: INFO
