@@ -1,17 +1,17 @@
 package com.myschool.runners;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class FlywayMigrationRunner implements ApplicationRunner {
-    @Autowired
-    private Flyway flyway;
+    private final Flyway flyway;
 
     @Override
     public void run(ApplicationArguments args) {

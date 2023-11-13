@@ -1,19 +1,19 @@
 package com.myschool.config;
 
+import lombok.RequiredArgsConstructor;
 import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
+@RequiredArgsConstructor
 public class ApplicationConfig {
-    @Autowired
-    private Environment environment;
+    private final Environment environment;
 
     @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
