@@ -7,8 +7,8 @@ import com.myschool.domain.mapper.UserProfileMapper;
 import com.myschool.domain.repository.UserProfileRepo;
 import com.myschool.response.GetUserResponse;
 import com.myschool.utils.Utils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,11 +16,10 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class UserProfileService {
-    @Autowired
-    private UserProfileRepo userRepo;
-    @Autowired
-    private UserProfileMapper userMapper;
+    private final UserProfileRepo userRepo;
+    private final UserProfileMapper userMapper;
 
     @Loggable
     public GetUserResponse getUserById(UUID id) {

@@ -3,7 +3,7 @@ package com.myschool.controller;
 import com.myschool.domain.dto.UserProfileDTO;
 import com.myschool.response.GetUserResponse;
 import com.myschool.service.UserProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +11,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserProfilePage {
-    @Autowired
-    UserProfileService userProfileService;
+    private final UserProfileService userProfileService;
 
     @GetMapping("/id/{id}")
     public ResponseEntity<GetUserResponse> getUserById(@PathVariable UUID id) {
