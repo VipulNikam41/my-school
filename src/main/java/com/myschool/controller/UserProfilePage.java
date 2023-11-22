@@ -15,7 +15,7 @@ import java.util.UUID;
 public class UserProfilePage {
     private final UserProfileService userProfileService;
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<UserProfileResponse> getUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }

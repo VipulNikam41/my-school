@@ -1,6 +1,5 @@
-package com.myschool.domain.dto;
+package com.myschool.domain.dto.support;
 
-import com.myschool.domain.dto.support.Status;
 import lombok.Data;
 
 @Data

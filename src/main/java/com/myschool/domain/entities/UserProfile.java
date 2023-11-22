@@ -1,5 +1,6 @@
 package com.myschool.domain.entities;
 
+import com.myschool.constants.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,5 +21,6 @@ public class UserProfile extends BaseEntity {
 
     private String dateOfBirth;
 
-    private String primaryGoal;
+    @Enumerated(EnumType.STRING)
+    private UserRole primaryGoal;
 }

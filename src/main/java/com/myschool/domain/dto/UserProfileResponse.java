@@ -1,6 +1,6 @@
 package com.myschool.domain.dto;
 
-import com.myschool.domain.entities.Contact;
+import com.myschool.constants.UserRole;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,10 +8,10 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class UserProfileResponse extends BaseResponse {
+public class UserProfileResponse {
     private UUID id;
     private String name;
-    private Contact contact;
+    private ContactResponse contact;
     private String dateOfBirth;
-    private String primaryGoal;
+    private UserRole primaryGoal;
 }

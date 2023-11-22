@@ -1,5 +1,7 @@
 package com.myschool.controller;
 
+import com.myschool.domain.dto.CourseRequest;
+import com.myschool.domain.dto.CourseResponse;
 import com.myschool.domain.dto.InstituteRequest;
 import com.myschool.domain.dto.UserProfileResponse;
 import com.myschool.service.InstituteService;
@@ -21,8 +23,19 @@ public class InstitutePage {
         return true;
     }
 
-    @GetMapping("/get/students")
-    public List<UserProfileResponse> getAllInstituteStudent(UUID instituteId) {
+    @PostMapping("/{instituteId}/course/add")
+    public boolean addCourse(@RequestBody CourseRequest request, @PathVariable UUID instituteId) {
+        service.validateAndAdd(request, instituteId);
+        return true;
+    }
+
+    @GetMapping("/{instituteId}/students")
+    public List<UserProfileResponse> getAllInstituteStudent(@PathVariable UUID instituteId) {
         return service.getStudentsForInstitute(instituteId);
+    }
+
+    @GetMapping("/{instituteId}/courses")
+    public List<CourseResponse> getAllInstituteCourses(@PathVariable UUID instituteId) {
+        return service.getCoursesForInstitute(instituteId);
     }
 }

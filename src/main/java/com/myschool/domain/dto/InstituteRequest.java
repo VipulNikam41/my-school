@@ -1,6 +1,5 @@
 package com.myschool.domain.dto;
 
-import com.myschool.domain.entities.Contact;
 import lombok.Data;
 
 import java.sql.Date;
@@ -14,5 +13,5 @@ public class InstituteRequest {
     private String about;
     private Date establishedOn;
     private UUID ownerUserId;
-    private Contact contact;
+    private ContactRequest contact;
 }
