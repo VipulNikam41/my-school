@@ -26,6 +26,8 @@ public class Institute extends BaseEntity {
     private UUID ownerUserId;
 
     @JoinColumn(name = "contact_id")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Contact contact;
+
+    private UUID homeBranchId;
 }

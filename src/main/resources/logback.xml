@@ -1,7 +1,7 @@
 <configuration>
     <property name="LOGS" value="logs" />
 
-    <springProperty name = "mainLevel" source= "logging.level"/>
+    <springProperty name = "mainLevel" source= "logging.level.com.myschool"/>
     <appender name="allLogs" class="ch.qos.logback.core.FileAppender">
         <file>${LOGS}/logs.log</file>
         <append>true</append>

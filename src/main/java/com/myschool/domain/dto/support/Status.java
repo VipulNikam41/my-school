@@ -1,4 +1,4 @@
-package com.myschool.response.support;
+package com.myschool.domain.dto.support;
 
 import com.myschool.constants.ResponseCode;
 import lombok.Data;
