@@ -15,7 +15,7 @@ import java.util.UUID;
 public class UserProfilePage {
     private final UserProfileService userProfileService;
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserProfileResponse> getUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(userProfileService.getUserById(id));
     }
@@ -25,8 +25,8 @@ public class UserProfilePage {
         return userProfileService.validateAndAdd(user);
     }
 
-    @PostMapping("/update")
-    public Boolean updateUser(@RequestBody UserProfileRequest user) {
-        return userProfileService.validateAndUpdate(user);
+    @PostMapping("/update/{id}")
+    public Boolean updateUser(@RequestBody UserProfileRequest user, @PathVariable UUID id) {
+        return userProfileService.validateAndUpdate(user, id);
     }
 }

@@ -2,10 +2,10 @@ package com.myschool.service;
 
 import com.myschool.aspects.annotation.Loggable;
 import com.myschool.domain.dto.UserProfileRequest;
+import com.myschool.domain.dto.UserProfileResponse;
 import com.myschool.domain.entities.UserProfile;
 import com.myschool.domain.mapper.UserProfileMapper;
 import com.myschool.domain.repository.UserProfileRepo;
-import com.myschool.domain.dto.UserProfileResponse;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class UserProfileService {
         log.info("Returning user info for user {}", id);
         Optional<UserProfile> userProfile = userRepo.findById(id);
 
-        if(userProfile.isEmpty()) {
+        if (userProfile.isEmpty()) {
             return null;
         }
 
@@ -47,9 +47,11 @@ public class UserProfileService {
         }
     }
 
-    public Boolean validateAndUpdate(UserProfileRequest user) {
+    public Boolean validateAndUpdate(UserProfileRequest user, UUID id) {
+        UserProfile userProfile = userMapper.dtoToEntity(user);
+        userProfile.setId(id);
         try {
-            userRepo.save(userMapper.dtoToEntity(user));
+            userRepo.save(userProfile);
             return true;
         } catch (Exception e) {
             return false;
