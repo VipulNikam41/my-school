@@ -1,18 +1,21 @@
 package com.myschool.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Entity
 @Data
-public class Courses extends BaseEntity {
+@Table(name = "courses")
+public class Course extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
+
+    @JoinColumn(name = "profile_picture_id")
+    @OneToOne
+    private ProfilePicture profilePicture;
 
     private String name;
 
@@ -21,10 +24,4 @@ public class Courses extends BaseEntity {
     private UUID instituteId;
 
     private int categoryId;
-
-    private int batchSize;
-
-    private int instructorId;
-
-    private int fees;
 }

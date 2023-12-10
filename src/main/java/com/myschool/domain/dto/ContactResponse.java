@@ -8,7 +8,9 @@ import java.util.UUID;
 public class ContactResponse {
     private UUID id;
     private String email;
+    private boolean emailVerified;
     private String phoneNumber;
+    private boolean phoneNumberVerified;
     private String address;
     private String addressPin;
 }

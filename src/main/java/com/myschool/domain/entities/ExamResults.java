@@ -1,7 +1,6 @@
 package com.myschool.domain.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -9,14 +8,15 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class StudentCourses extends BaseEntity {
+public class ExamResults extends BaseEntity {
     @Id
-    @GeneratedValue
-    private UUID id;
-
+    private UUID lectureId;
+    @Id
     private UUID studentId;
 
-    private UUID courseId;
+    private UUID staffId;
 
-    private String discountedFees;
+    private float marks;
+
+    private String remark;
 }

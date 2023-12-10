@@ -24,6 +24,6 @@ logging:
   level:
     org:
       springframework: INFO
-      hibernate: DEBUG
+      hibernate: INFO
     com:
       myschool: INFO
