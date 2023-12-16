@@ -7,22 +7,14 @@ import lombok.Data;
 
 import java.util.UUID;
 
-@Data
 @Entity
-public class Contact extends BaseEntity {
+@Data
+public class ProfilePicture extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String email;
+    private String color;
 
-    private boolean emailVerified;
-
-    private String phoneNumber;
-
-    private boolean phoneNumberVerified;
-
-    private String address;
-
-    private String addressPin;
+    private String imageLink;
 }

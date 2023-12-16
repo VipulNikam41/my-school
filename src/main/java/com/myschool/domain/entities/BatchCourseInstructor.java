@@ -7,22 +7,16 @@ import lombok.Data;
 
 import java.util.UUID;
 
-@Data
 @Entity
-public class Contact extends BaseEntity {
+@Data
+public class BatchCourseInstructor extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
 
-    private String email;
+    private UUID batchId;
 
-    private boolean emailVerified;
+    private UUID courseId;
 
-    private String phoneNumber;
-
-    private boolean phoneNumberVerified;
-
-    private String address;
-
-    private String addressPin;
+    private UUID instructorId;
 }

@@ -8,8 +8,9 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class UserProfileResponse {
+public class UserResponse {
     private UUID id;
+    private ProfilePictureResponse profilePicture;
     private String name;
     private ContactResponse contact;
     private String dateOfBirth;

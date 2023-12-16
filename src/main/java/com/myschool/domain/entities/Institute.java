@@ -13,6 +13,10 @@ public class Institute extends BaseEntity {
     @GeneratedValue
     private UUID id;
 
+    @JoinColumn(name = "profile_picture_id")
+    @OneToOne
+    private ProfilePicture profilePicture;
+
     private String name;
 
     private String userName;
@@ -23,11 +27,19 @@ public class Institute extends BaseEntity {
 
     private Date establishedOn;
 
-    private UUID ownerUserId;
+    private UUID ownerId;
 
     @JoinColumn(name = "contact_id")
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Contact contact;
 
     private UUID homeBranchId;
+
+    public boolean isSubBranch() {
+        return homeBranchId != null;
+    }
+
+    public String getAbout() {
+        return this.about;
+    }
 }
