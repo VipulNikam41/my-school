@@ -9,6 +9,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface StaffMapper {
     Staff dtoToEntity(StaffResponse staffResponse);
+
     Staff dtoToEntity(StaffRequest request);
 
     Staff dtoToEntity(OwnerRegistrationRequest staffResponse);

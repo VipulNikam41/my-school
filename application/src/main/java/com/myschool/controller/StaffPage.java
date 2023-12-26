@@ -49,7 +49,7 @@ public class StaffPage {
         return batchService.validateAndAdd(request, instituteId);
     }
 
-    @PostMapping("{instituteId}/batch/add/student")
+    @PostMapping("{instituteId}/batch/student/add")
     public ResponseCode addStudent(@RequestBody AddStudent request, @PathVariable UUID instituteId) {
         return batchService.addStudent(request, instituteId);
     }

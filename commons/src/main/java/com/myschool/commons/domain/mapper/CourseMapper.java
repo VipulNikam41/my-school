@@ -1,7 +1,7 @@
 package com.myschool.commons.domain.mapper;
 
-import com.myschool.commons.domain.dto.CourseResponse;
 import com.myschool.commons.domain.dto.CourseRequest;
+import com.myschool.commons.domain.dto.CourseResponse;
 import com.myschool.commons.domain.entities.Course;
 import org.mapstruct.Mapper;
 

@@ -76,7 +76,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>com.myschool</groupId>
             <artifactId>commons</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
