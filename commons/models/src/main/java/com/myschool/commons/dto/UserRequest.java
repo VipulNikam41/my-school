@@ -1,6 +1,6 @@
 package com.myschool.commons.dto;
 
-import com.myschool.commons.constants.UserRole;
+import com.myschool.constants.UserRole;
 import lombok.Data;
 
 @Data

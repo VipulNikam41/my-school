@@ -1,6 +1,6 @@
 package com.myschool.commons.entities;
 
-import com.myschool.commons.constants.GuardianPrivilege;
+import com.myschool.constants.GuardianPrivilege;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;

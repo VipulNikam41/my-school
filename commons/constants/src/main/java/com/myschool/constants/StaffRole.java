@@ -1,4 +1,4 @@
-package com.myschool.commons.constants;
+package com.myschool.constants;
 
 public enum StaffRole {
     INSTRUCTOR,

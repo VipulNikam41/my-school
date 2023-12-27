@@ -1,7 +1,7 @@
 package com.myschool.service;
 
-import com.myschool.commons.constants.ResponseCode;
-import com.myschool.commons.constants.UserRole;
+import com.myschool.constants.ResponseCode;
+import com.myschool.constants.UserRole;
 import com.myschool.commons.dto.console.AddBatch;
 import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.commons.entities.Batch;

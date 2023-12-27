@@ -1,7 +1,7 @@
 package com.myschool.commons.entities;
 
-import com.myschool.commons.constants.Privilege;
-import com.myschool.commons.constants.StaffRole;
+import com.myschool.constants.Privilege;
+import com.myschool.constants.StaffRole;
 import jakarta.persistence.*;
 import lombok.Data;
 

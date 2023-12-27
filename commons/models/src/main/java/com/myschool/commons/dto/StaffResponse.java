@@ -1,18 +1,21 @@
 package com.myschool.commons.dto;
 
-import com.myschool.commons.constants.UserRole;
+import com.myschool.constants.Privilege;
+import com.myschool.constants.StaffRole;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @Builder
-public class UserResponse {
+public class StaffResponse {
     private UUID id;
     private ProfilePictureResponse profilePicture;
     private String name;
     private ContactResponse contact;
     private String dateOfBirth;
-    private UserRole primaryGoal;
+    private List<Privilege> privileges;
+    private StaffRole primaryGoal;
 }

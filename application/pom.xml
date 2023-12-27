@@ -44,7 +44,13 @@
         </dependency>
         <dependency>
             <groupId>com.myschool</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>constants</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.myschool</groupId>
+            <artifactId>models</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
