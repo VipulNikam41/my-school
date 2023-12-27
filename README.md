@@ -8,3 +8,7 @@ run docker compose file in deploy folder
 ```shell
 docker compose --env-file dev.env up
 ```
+to change version
+```shell
+mvn versions:set -DnewVersion=<version>
+```
