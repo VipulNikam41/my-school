@@ -11,6 +11,12 @@
     </parent>
 
     <artifactId>commons</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>constants</module>
+        <module>models</module>
+    </modules>
 
     <dependencies>
         <dependency>
