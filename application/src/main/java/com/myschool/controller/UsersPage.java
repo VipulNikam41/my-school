@@ -1,7 +1,7 @@
 package com.myschool.controller;
 
-import com.myschool.commons.domain.dto.UserRequest;
-import com.myschool.commons.domain.dto.UserResponse;
+import com.myschool.commons.dto.UserRequest;
+import com.myschool.commons.dto.UserResponse;
 import com.myschool.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

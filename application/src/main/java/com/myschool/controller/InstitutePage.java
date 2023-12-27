@@ -1,8 +1,8 @@
 package com.myschool.controller;
 
-import com.myschool.commons.domain.dto.CourseResponse;
-import com.myschool.commons.domain.dto.StaffResponse;
-import com.myschool.commons.domain.dto.UserResponse;
+import com.myschool.commons.dto.CourseResponse;
+import com.myschool.commons.dto.StaffResponse;
+import com.myschool.commons.dto.UserResponse;
 import com.myschool.service.InstituteService;
 import com.myschool.service.StaffService;
 import lombok.RequiredArgsConstructor;

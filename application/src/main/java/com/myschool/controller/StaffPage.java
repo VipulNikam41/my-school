@@ -1,10 +1,13 @@
 package com.myschool.controller;
 
 import com.myschool.commons.constants.ResponseCode;
-import com.myschool.commons.domain.dto.*;
-import com.myschool.commons.domain.dto.console.AddBatch;
-import com.myschool.commons.domain.dto.console.AddStudent;
-import com.myschool.commons.domain.dto.console.OwnerRegistrationRequest;
+import com.myschool.commons.dto.CourseRequest;
+import com.myschool.commons.dto.InstituteRequest;
+import com.myschool.commons.dto.InstituteResponse;
+import com.myschool.commons.dto.StaffRequest;
+import com.myschool.commons.dto.console.AddBatch;
+import com.myschool.commons.dto.console.AddStudent;
+import com.myschool.commons.dto.console.OwnerRegistrationRequest;
 import com.myschool.service.BatchService;
 import com.myschool.service.InstituteService;
 import com.myschool.service.StaffService;
