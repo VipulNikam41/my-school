@@ -27,12 +27,10 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>${version.mapper}</version>
         </dependency>
         <dependency>
             <groupId>com.myschool</groupId>
             <artifactId>constants</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
