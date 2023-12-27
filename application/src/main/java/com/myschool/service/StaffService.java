@@ -1,7 +1,7 @@
 package com.myschool.service;
 
-import com.myschool.commons.constants.Privilege;
-import com.myschool.commons.constants.StaffRole;
+import com.myschool.constants.Privilege;
+import com.myschool.constants.StaffRole;
 import com.myschool.commons.dto.InstituteResponse;
 import com.myschool.commons.dto.console.OwnerRegistrationRequest;
 import com.myschool.commons.dto.StaffRequest;

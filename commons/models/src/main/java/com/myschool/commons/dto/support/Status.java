@@ -1,6 +1,6 @@
 package com.myschool.commons.dto.support;
 
-import com.myschool.commons.constants.ResponseCode;
+import com.myschool.constants.ResponseCode;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 

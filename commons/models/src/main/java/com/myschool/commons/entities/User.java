@@ -1,6 +1,6 @@
 package com.myschool.commons.entities;
 
-import com.myschool.commons.constants.UserRole;
+import com.myschool.constants.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 

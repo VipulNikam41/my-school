@@ -12,6 +12,8 @@
     <modules>
         <module>commons</module>
         <module>application</module>
+        <module>commons/constants</module>
+        <module>commons/models</module>
     </modules>
 
     <parent>

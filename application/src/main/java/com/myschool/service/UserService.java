@@ -1,7 +1,6 @@
 package com.myschool.service;
 
 import com.myschool.aspects.annotation.Loggable;
-import com.myschool.commons.constants.UserRole;
 import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.entities.User;
@@ -9,6 +8,7 @@ import com.myschool.commons.mapper.InstituteMapper;
 import com.myschool.commons.mapper.UserMapper;
 import com.myschool.commons.repository.InstituteRepo;
 import com.myschool.commons.repository.UserRepo;
+import com.myschool.constants.UserRole;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

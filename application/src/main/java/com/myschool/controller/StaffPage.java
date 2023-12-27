@@ -1,6 +1,6 @@
 package com.myschool.controller;
 
-import com.myschool.commons.constants.ResponseCode;
+import com.myschool.constants.ResponseCode;
 import com.myschool.commons.dto.CourseRequest;
 import com.myschool.commons.dto.InstituteRequest;
 import com.myschool.commons.dto.InstituteResponse;
