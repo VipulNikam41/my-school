@@ -1,16 +1,16 @@
 package com.myschool.service;
 
-import com.myschool.commons.domain.dto.*;
-import com.myschool.commons.domain.entities.Course;
-import com.myschool.commons.domain.entities.Institute;
-import com.myschool.commons.domain.entities.Staff;
-import com.myschool.commons.domain.entities.User;
-import com.myschool.commons.domain.mapper.CourseMapper;
-import com.myschool.commons.domain.mapper.InstituteMapper;
-import com.myschool.commons.domain.mapper.StaffMapper;
-import com.myschool.commons.domain.mapper.UserMapper;
-import com.myschool.commons.domain.repository.CourseRepo;
-import com.myschool.commons.domain.repository.InstituteRepo;
+import com.myschool.commons.dto.*;
+import com.myschool.commons.entities.Course;
+import com.myschool.commons.entities.Institute;
+import com.myschool.commons.entities.Staff;
+import com.myschool.commons.entities.User;
+import com.myschool.commons.mapper.CourseMapper;
+import com.myschool.commons.mapper.InstituteMapper;
+import com.myschool.commons.mapper.StaffMapper;
+import com.myschool.commons.mapper.UserMapper;
+import com.myschool.commons.repository.CourseRepo;
+import com.myschool.commons.repository.InstituteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

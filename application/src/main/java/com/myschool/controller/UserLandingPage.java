@@ -1,7 +1,7 @@
 package com.myschool.controller;
 
-import com.myschool.commons.domain.dto.InstituteResponse;
-import com.myschool.commons.domain.dto.LocationCords;
+import com.myschool.commons.dto.InstituteResponse;
+import com.myschool.commons.dto.LocationCords;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
