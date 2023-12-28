@@ -18,6 +18,11 @@ public interface UserRepo extends JpaRepository<User, UUID> {
     List<User> getStudentByContact(@Param("email") String email, @Param("phoneNumber") String phoneNumber);
 
     @Query("Select u FROM User u " +
+            "WHERE u.contact.email = :email " +
+            "OR u.contact.phoneNumber = :phoneNumber")
+    List<User> getUserByContact(@Param("email") String email, @Param("phoneNumber") String phoneNumber);
+
+    @Query("Select u FROM User u " +
             "WHERE u.contact.email = :email AND u.contact.emailVerified = true")
     User getStudentByEmail(@Param("email") String email);
 

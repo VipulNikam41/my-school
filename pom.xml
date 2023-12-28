@@ -12,12 +12,14 @@
     <modules>
         <module>commons</module>
         <module>application</module>
+        <module>admission</module>
+        <module>discovery-server</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.2</version>
+        <version>3.0.5</version>
     </parent>
 
     <properties>
@@ -31,6 +33,7 @@
         <version.flyway>9.16.3</version.flyway>
         <version.mapper>1.4.2.Final</version.mapper>
         <version.junit>4.13.1</version.junit>
+        <version.spring-cloud>2022.0.1</version.spring-cloud>
     </properties>
 
     <dependencyManagement>
@@ -60,6 +63,13 @@
                 <artifactId>junit</artifactId>
                 <version>${version.junit}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${version.spring-cloud}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
