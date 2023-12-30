@@ -9,7 +9,7 @@
         <version>VERSION</version>
     </parent>
 
-    <artifactId>application</artifactId>
+    <artifactId>manage-ops</artifactId>
 
     <dependencies>
         <dependency>

@@ -11,9 +11,13 @@
 
     <modules>
         <module>commons</module>
-        <module>application</module>
-        <module>admission</module>
         <module>discovery-server</module>
+        <module>explorer</module>
+        <module>user-dashboard</module>
+        <module>application</module>
+        <module>payments</module>
+        <module>syllabus-hub</module>
+        <module>scheduler</module>
     </modules>
 
     <parent>
