@@ -11,5 +11,5 @@ import java.util.UUID;
 public interface BatchRepo extends JpaRepository<Batch, UUID> {
     Batch findByIdAndInstituteId(UUID id, UUID instituteId);
 
-    List<Batch> findByStudentId(UUID studentId);
+    List<Batch> findByInstituteId(UUID instituteId);
 }

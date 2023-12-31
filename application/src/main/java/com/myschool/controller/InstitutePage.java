@@ -2,7 +2,6 @@ package com.myschool.controller;
 
 import com.myschool.commons.dto.CourseResponse;
 import com.myschool.commons.dto.StaffResponse;
-import com.myschool.commons.dto.UserResponse;
 import com.myschool.service.InstituteService;
 import com.myschool.service.StaffService;
 import lombok.RequiredArgsConstructor;
@@ -20,16 +19,6 @@ import java.util.UUID;
 public class InstitutePage {
     private final InstituteService service;
     private final StaffService staffService;
-
-    @GetMapping("/{instituteId}/students")
-    public List<UserResponse> getAllInstituteStudent(@PathVariable UUID instituteId) {
-        return service.getStudentsForInstitute(instituteId);
-    }
-
-    @GetMapping("/{instituteId}/{courseId}/students")
-    public List<UserResponse> getCourseStudents(@PathVariable UUID instituteId, @PathVariable UUID courseId) {
-        return service.getStudentsForCourse(instituteId, courseId);
-    }
 
     @GetMapping("/{instituteId}/courses")
     public List<CourseResponse> getAllInstituteCourses(@PathVariable UUID instituteId) {

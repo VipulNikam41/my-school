@@ -1,5 +1,8 @@
-package com.myschool.commons.entities;
+package com.myschool.dashboard.entities;
 
+import com.myschool.commons.entities.BaseEntity;
+import com.myschool.commons.entities.Contact;
+import com.myschool.commons.entities.ProfilePicture;
 import com.myschool.constants.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;

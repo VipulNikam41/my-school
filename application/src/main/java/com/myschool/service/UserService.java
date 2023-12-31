@@ -1,86 +1,54 @@
 package com.myschool.service;
 
 import com.myschool.aspects.annotation.Loggable;
-import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
-import com.myschool.commons.entities.User;
-import com.myschool.manageops.mapper.InstituteMapper;
-import com.myschool.commons.mapper.UserMapper;
-import com.myschool.manageops.repository.InstituteRepo;
-import com.myschool.commons.repository.UserRepo;
-import com.myschool.constants.UserRole;
-import com.myschool.utils.Utils;
+import com.myschool.commons.dto.console.AddStudent;
+import com.myschool.constants.MicroService;
+import com.myschool.constants.endpoints.DashboardApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+
+import static com.myschool.constants.Defaults.HTTP;
+import static com.myschool.constants.MicroService.USER_DASHBOARD;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepo userRepo;
-    private final InstituteRepo instituteRepo;
-
-    private final UserMapper userMapper;
-    private final InstituteMapper instituteMapper;
+    private final WebClient.Builder webClientBuilder;
 
     @Loggable
     public UserResponse getUserById(UUID id) {
-        log.info("Returning user info for user {}", id);
-        Optional<User> userProfile = userRepo.findById(id);
-
-        if (userProfile.isEmpty()) {
-            return null;
-        }
-
-        User user = userProfile.get();
-
-        return userMapper.entityToDto(user);
+        return webClientBuilder.build().get()
+                .uri(HTTP + USER_DASHBOARD.getServiceName() + DashboardApi.GET_PROFILE.replace("{userId}", id.toString()))
+                .retrieve()
+                .bodyToMono(UserResponse.class)
+                .block();
     }
 
-    public Boolean validateAndAdd(UserRequest userDto) {
-        userDto.setName(Utils.beautify(userDto.getName()));
-        if (userDto.getPrimaryGoal() == null) {
-            userDto.setPrimaryGoal(UserRole.STUDENT);
-        }
-
-        try {
-            User user = userMapper.dtoToEntity(userDto);
-            userRepo.save(user);
-            log.info("User is saved {}", user.getId());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public UUID validateAndAdd(AddStudent addStudent) {
+        // DashboardApi.AddProfile TODO add user
+        return UUID.randomUUID();
     }
 
-    public Boolean validateAndUpdate(UserRequest user, UUID id) {
-        User userProfile = userMapper.dtoToEntity(user);
-        userProfile.setId(id);
-        try {
-            userRepo.save(userProfile);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public Boolean validateAndUpdate(AddStudent user, UUID id) {
+        // DashboardApi.UPDATE_PROFILE TODO update user
+        return true;
     }
 
-    public List<User> getStudentByContact(String email, String phoneNumber) {
-        if (email != null && phoneNumber != null) {
-            return userRepo.getStudentByContact(email, phoneNumber);
-        }
-
-        if (email != null) {
-            return Collections.singletonList(userRepo.getStudentByEmail(email));
-        } else if (phoneNumber != null) {
-            return Collections.singletonList(userRepo.getStudentByPhoneNumber(phoneNumber));
-        }
+    public List<UserResponse> getStudentByContact(String email, String phoneNumber) {
+        // need to write api to get student by contact TODO
 
         return Collections.emptyList();
+    }
+
+    public List<UserResponse> getStudentByIdIn(List<UUID> studentIds) {
+        return null;
     }
 }

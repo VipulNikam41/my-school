@@ -1,6 +1,6 @@
-package com.myschool.commons.repository;
+package com.myschool.dashboard.repository;
 
-import com.myschool.commons.entities.User;
+import com.myschool.dashboard.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

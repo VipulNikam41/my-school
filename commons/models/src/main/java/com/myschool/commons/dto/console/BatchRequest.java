@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class AddBatch {
+public class BatchRequest {
     private ProfilePictureRequest profilePicture;
     private String name;
     private String description;

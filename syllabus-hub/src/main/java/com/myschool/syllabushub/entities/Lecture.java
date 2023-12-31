@@ -10,6 +10,8 @@ import java.util.UUID;
 @Entity
 @Data
 public class Lecture extends BaseEntity {
+    public static final String NAME = "Lecture";
+
     @Id
     @GeneratedValue
     private UUID id;

@@ -11,6 +11,8 @@ import java.util.UUID;
 @Entity
 @Data
 public class Batch extends BaseEntity {
+    public static final String NAME = "Batch";
+
     @Id
     @GeneratedValue
     private UUID id;

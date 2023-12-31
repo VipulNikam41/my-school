@@ -2,6 +2,8 @@ server:
   port: 1234
 
 spring:
+  application:
+    name: manage-ops-aws
   datasource:
     url: jdbc:postgresql://my-school.cqkytc8dhq8x.ap-south-1.rds.amazonaws.com:5432/my_school
     username: root
@@ -27,3 +29,11 @@ logging:
       hibernate: INFO
     com:
       myschool: INFO
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  prefer-ip-address: true

@@ -2,15 +2,18 @@ package com.myschool.dashboard.service;
 
 import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
-import com.myschool.commons.entities.User;
-import com.myschool.commons.mapper.UserMapper;
-import com.myschool.commons.repository.UserRepo;
+import com.myschool.constants.UserRole;
+import com.myschool.dashboard.entities.User;
+import com.myschool.dashboard.mapper.UserMapper;
+import com.myschool.dashboard.repository.UserRepo;
 import com.myschool.constants.ResponseCode;
+import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import com.myschool.utils.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +29,11 @@ public class ProfileService {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
         if (!CollectionUtils.isEmpty(users)) {
             return ResponseCode.REGISTRATION_201;
+        }
+
+        request.setName(Utils.beautify(request.getName()));
+        if (request.getPrimaryGoal() == null) {
+            request.setPrimaryGoal(UserRole.STUDENT);
         }
 
         User user = userMapper.dtoToEntity(request);
@@ -54,5 +62,19 @@ public class ProfileService {
 
         userRepo.save(user);
         return ResponseCode.REGISTRATION_100;
+    }
+
+    public List<User> getStudentByContact(String email, String phoneNumber) {
+        if (email != null && phoneNumber != null) {
+            return userRepo.getStudentByContact(email, phoneNumber);
+        }
+
+        if (email != null) {
+            return Collections.singletonList(userRepo.getStudentByEmail(email));
+        } else if (phoneNumber != null) {
+            return Collections.singletonList(userRepo.getStudentByPhoneNumber(phoneNumber));
+        }
+
+        return Collections.emptyList();
     }
 }

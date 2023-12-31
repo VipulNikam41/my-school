@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: admission
+    name: explorer
   datasource:
     url: jdbc:postgresql://my-school.cqkytc8dhq8x.ap-south-1.rds.amazonaws.com:5432/my_school
     username: root

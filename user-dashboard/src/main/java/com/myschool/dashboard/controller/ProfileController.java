@@ -2,8 +2,8 @@ package com.myschool.dashboard.controller;
 
 import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
-import com.myschool.constants.endpoints.DashboardApi;
 import com.myschool.constants.ResponseCode;
+import com.myschool.constants.endpoints.DashboardApi;
 import com.myschool.dashboard.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

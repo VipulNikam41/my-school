@@ -13,10 +13,11 @@ import com.myschool.manageops.repository.InstituteRepo;
 import com.myschool.manageops.repository.StaffRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import com.myschool.utils.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -47,8 +48,8 @@ public class StaffService {
         }
 
         UUID homeBranch = institutes.stream()
-                .filter(i -> i.getHomeBranchId() != null)
                 .map(Institute::getHomeBranchId)
+                .filter(Objects::nonNull)
                 .findFirst().orElse(null);
 
         if(homeBranch!=null) {
@@ -61,8 +62,21 @@ public class StaffService {
                 .toList();
     }
 
-    public Boolean onboardStaff(StaffRequest request) {
+    public Boolean onboardStaff(StaffRequest request, UUID instituteId) {
         Staff staff = staffMapper.dtoToEntity(request);
+        staff.setInstituteId(instituteId);
+        staffRepo.save(staff);
+        return true;
+    }
+
+    public Boolean updateStaff(StaffRequest request, UUID instituteId, UUID staffId) {
+        Staff staff = staffRepo.findById(staffId).orElse(null);
+        if(staff == null || staff.getInstituteId() != instituteId) {
+            return false;
+        }
+        staff = staffMapper.dtoToEntity(request);
+        staff.setInstituteId(instituteId);
+
         staffRepo.save(staff);
         return true;
     }

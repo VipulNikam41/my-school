@@ -4,11 +4,9 @@ import com.myschool.commons.dto.*;
 import com.myschool.manageops.entities.Course;
 import com.myschool.manageops.entities.Institute;
 import com.myschool.manageops.entities.Staff;
-import com.myschool.commons.entities.User;
 import com.myschool.manageops.mapper.CourseMapper;
 import com.myschool.manageops.mapper.InstituteMapper;
 import com.myschool.manageops.mapper.StaffMapper;
-import com.myschool.commons.mapper.UserMapper;
 import com.myschool.manageops.repository.CourseRepo;
 import com.myschool.manageops.repository.InstituteRepo;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +19,12 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class InstituteService {
+    private final UserService userService;
+
     private final InstituteRepo instituteRepo;
     private final CourseRepo courseRepo;
 
     private final InstituteMapper instituteMapper;
-    private final UserMapper userMapper;
     private final StaffMapper staffMapper;
     private final CourseMapper courseMapper;
 
@@ -40,11 +39,9 @@ public class InstituteService {
     }
 
     public List<UserResponse> getStudentsForInstitute(UUID instituteId) {
-        List<User> students = instituteRepo.findStudentsByInstituteId(instituteId);
+        List<UUID> studentIds = instituteRepo.findStudentsIdsByInstituteId(instituteId);
 
-        return students.stream()
-                .map(userMapper::entityToDto)
-                .toList();
+        return userService.getStudentByIdIn(studentIds);
     }
 
     public List<CourseResponse> getCoursesForInstitute(UUID instituteId) {
@@ -52,20 +49,6 @@ public class InstituteService {
 
         return courses.stream()
                 .map(courseMapper::entityToDto)
-                .toList();
-    }
-
-    public List<UserResponse> getStudentsForCourse(UUID instituteId, UUID courseId) {
-        Course course = courseRepo.findById(courseId).orElse(null);
-
-        if (course == null || !course.getInstituteId().equals(instituteId)) {
-            return Collections.emptyList();
-        }
-
-        List<User> students = instituteRepo.findStudentsByCourseId(courseId);
-
-        return students.stream()
-                .map(userMapper::entityToDto)
                 .toList();
     }
 

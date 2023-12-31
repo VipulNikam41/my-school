@@ -1,5 +1,6 @@
-package com.myschool.commons.entities;
+package com.myschool.dashboard.entities;
 
+import com.myschool.commons.entities.BaseEntity;
 import com.myschool.constants.GuardianPrivilege;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
