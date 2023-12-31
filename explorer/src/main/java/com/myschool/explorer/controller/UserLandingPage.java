@@ -5,10 +5,12 @@ import com.myschool.commons.dto.LocationCords;
 import com.myschool.constants.endpoints.ExplorerApi;
 import com.myschool.explorer.service.ExplorerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor

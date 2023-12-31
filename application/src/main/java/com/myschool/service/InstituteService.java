@@ -12,7 +12,6 @@ import com.myschool.manageops.repository.InstituteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 

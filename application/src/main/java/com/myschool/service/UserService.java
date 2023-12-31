@@ -3,7 +3,6 @@ package com.myschool.service;
 import com.myschool.aspects.annotation.Loggable;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
-import com.myschool.constants.MicroService;
 import com.myschool.constants.endpoints.DashboardApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,8 @@
 package com.myschool.controller;
 
-import com.myschool.commons.dto.*;
-import com.myschool.constants.ResponseCode;
+import com.myschool.commons.dto.BatchResponse;
+import com.myschool.commons.dto.CourseRequest;
 import com.myschool.commons.dto.console.BatchRequest;
-import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.constants.endpoints.ConsoleApi;
 import com.myschool.service.BatchService;
 import com.myschool.service.InstituteService;
