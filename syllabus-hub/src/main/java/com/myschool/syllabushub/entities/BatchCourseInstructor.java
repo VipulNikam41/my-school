@@ -11,6 +11,8 @@ import java.util.UUID;
 @Entity
 @Data
 public class BatchCourseInstructor extends BaseEntity {
+    public static final String ENTITY = "BatchCourseInstructor";
+
     @Id
     @GeneratedValue
     private UUID id;

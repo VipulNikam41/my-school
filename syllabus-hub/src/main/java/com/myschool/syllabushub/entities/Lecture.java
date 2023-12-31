@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Data
 public class Lecture extends BaseEntity {
-    public static final String NAME = "Lecture";
+    public static final String ENTITY = "Lecture";
 
     @Id
     @GeneratedValue

@@ -13,7 +13,7 @@ import com.myschool.manageops.repository.BatchStudentsRepo;
 import com.myschool.utils.MathUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionUtils;
+import com.myschool.utils.CollectionUtil;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +52,7 @@ public class BatchService {
         }
 
         List<UserResponse> users = userService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
-        if (!CollectionUtils.isEmpty(users)) {
+        if (!CollectionUtil.isEmpty(users)) {
             return ResponseCode.NOTIFY_100;
         }
 
@@ -70,7 +70,7 @@ public class BatchService {
 
     public List<BatchResponse> getBatches(UUID instituteId, List<UUID> batchIds) {
         List<Batch> batches;
-        if (!CollectionUtils.isEmpty(batchIds)) {
+        if (!CollectionUtil.isEmpty(batchIds)) {
             batches = batchRepo.findAllById(batchIds);
             batches = batches.stream().filter(b -> b.getInstituteId() != instituteId).toList();
         } else {

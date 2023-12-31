@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Utils {
     public String beautify(String str) {
-        if (StringUtils.isEmpty(str)) {
+        if (StringUtil.isEmpty(str)) {
             return str;
         }
         String[] words = removeExtraSpaces(str).split("\\s+");
@@ -23,14 +23,14 @@ public class Utils {
     }
 
     public String removeExtraSpaces(String str) {
-        if (StringUtils.isEmpty(str)) {
+        if (StringUtil.isEmpty(str)) {
             return str;
         }
         return str.replaceAll("\\s+", " ").trim();
     }
 
     public String capitalize(String str) {
-        if (StringUtils.isEmpty(str)) {
+        if (StringUtil.isEmpty(str)) {
             return str;
         }
         if (str.length() == 1) {

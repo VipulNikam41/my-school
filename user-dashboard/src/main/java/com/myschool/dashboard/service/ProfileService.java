@@ -11,7 +11,7 @@ import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionUtils;
+import com.myschool.utils.CollectionUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ProfileService {
 
     public ResponseCode registerUser(UserRequest request) {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
-        if (!CollectionUtils.isEmpty(users)) {
+        if (!CollectionUtil.isEmpty(users)) {
             return ResponseCode.REGISTRATION_201;
         }
 
