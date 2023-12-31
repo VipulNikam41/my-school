@@ -2,16 +2,16 @@ package com.myschool.dashboard.service;
 
 import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
+import com.myschool.constants.ResponseCode;
 import com.myschool.constants.UserRole;
 import com.myschool.dashboard.entities.User;
 import com.myschool.dashboard.mapper.UserMapper;
 import com.myschool.dashboard.repository.UserRepo;
-import com.myschool.constants.ResponseCode;
+import com.myschool.utils.CollectionUtil;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +28,13 @@ public class ProfileService {
     public ResponseCode registerUser(UserRequest request) {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
         if (!CollectionUtil.isEmpty(users)) {
-            return ResponseCode.REGISTRATION_201;
+            boolean registeredUser = users.stream().anyMatch(
+                            u -> u.getContact().isEmailVerified() ||
+                            u.getContact().isPhoneNumberVerified()
+                    );
+            if (registeredUser) {
+                return ResponseCode.REGISTRATION_201;
+            }
         }
 
         request.setName(Utils.beautify(request.getName()));
