@@ -13,7 +13,7 @@ import com.myschool.manageops.repository.InstituteRepo;
 import com.myschool.manageops.repository.StaffRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionUtil;
+import com.myschool.utils.CollectionTool;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +43,7 @@ public class StaffService {
     public List<InstituteResponse> getInstitutesOwnedByUser(UUID id) {
         List<Institute> institutes = instituteRepo.findAllByOwnerId(id);
 
-        if (CollectionUtil.isEmpty(institutes)) {
+        if (CollectionTool.isEmpty(institutes)) {
             return Collections.emptyList();
         }
 

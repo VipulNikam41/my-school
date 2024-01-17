@@ -27,7 +27,7 @@ public class Batch extends BaseEntity {
 
     private UUID instituteId;
 
-    private int batchSize;
+    private Integer batchSize;
 
     @Column(nullable = false, scale = 2)
     private BigDecimal fees;

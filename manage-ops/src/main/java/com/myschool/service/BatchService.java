@@ -4,6 +4,7 @@ import com.myschool.commons.dto.BatchResponse;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.commons.dto.console.BatchRequest;
+import com.myschool.constants.Defaults;
 import com.myschool.constants.ResponseCode;
 import com.myschool.manageops.entities.Batch;
 import com.myschool.manageops.entities.BatchStudents;
@@ -13,7 +14,7 @@ import com.myschool.manageops.repository.BatchStudentsRepo;
 import com.myschool.utils.MathUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionUtil;
+import com.myschool.utils.CollectionTool;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +53,7 @@ public class BatchService {
         }
 
         List<UserResponse> users = userService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
-        if (!CollectionUtil.isEmpty(users)) {
+        if (!CollectionTool.isEmpty(users)) {
             return ResponseCode.NOTIFY_100;
         }
 
@@ -70,7 +71,7 @@ public class BatchService {
 
     public List<BatchResponse> getBatches(UUID instituteId, List<UUID> batchIds) {
         List<Batch> batches;
-        if (!CollectionUtil.isEmpty(batchIds)) {
+        if (!CollectionTool.isEmpty(batchIds)) {
             batches = batchRepo.findAllById(batchIds);
             batches = batches.stream().filter(b -> b.getInstituteId() != instituteId).toList();
         } else {
@@ -114,5 +115,18 @@ public class BatchService {
         }
 
         return userService.validateAndUpdate(request, studentId);
+    }
+
+    public void addDefaultBranch(UUID instituteId) {
+        if(instituteId == null) {
+            return;
+        }
+
+        Batch batch = new Batch();
+        batch.setId(instituteId);
+        batch.setName(Defaults.BATCH_NAME);
+        batch.setDescription(Defaults.BATCH_NAME);
+        batch.setInstituteId(instituteId);
+        batchRepo.save(batch);
     }
 }

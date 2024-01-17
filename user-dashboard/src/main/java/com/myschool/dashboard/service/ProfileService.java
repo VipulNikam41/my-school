@@ -7,7 +7,7 @@ import com.myschool.constants.UserRole;
 import com.myschool.dashboard.entities.User;
 import com.myschool.dashboard.mapper.UserMapper;
 import com.myschool.dashboard.repository.UserRepo;
-import com.myschool.utils.CollectionUtil;
+import com.myschool.utils.CollectionTool;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class ProfileService {
 
     public ResponseCode registerUser(UserRequest request) {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
-        if (!CollectionUtil.isEmpty(users)) {
+        if (!CollectionTool.isEmpty(users)) {
             boolean registeredUser = users.stream().anyMatch(
                             u -> u.getContact().isEmailVerified() ||
                             u.getContact().isPhoneNumberVerified()

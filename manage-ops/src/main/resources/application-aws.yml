@@ -1,9 +1,9 @@
 server:
-  port: 1234
+  port: 0
 
 spring:
   application:
-    name: manage-ops-aws
+    name: management-ops
   datasource:
     url: jdbc:postgresql://my-school.cqkytc8dhq8x.ap-south-1.rds.amazonaws.com:5432/my_school
     username: root
@@ -33,7 +33,10 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-  prefer-ip-address: true
+      defaultZone: ${eureka_uri:http://eureka:password@localhost:8761/eureka}
+    registryFetchIntervalSeconds: 60
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true

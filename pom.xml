@@ -14,16 +14,17 @@
         <module>discovery-server</module>
         <module>explorer</module>
         <module>user-dashboard</module>
-        <module>application</module>
+        <module>manage-ops</module>
         <module>payments</module>
         <module>syllabus-hub</module>
         <module>scheduler</module>
+        <module>api-gateway</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version> <!-- 3.1.2 TODO -->
+        <version>3.0.6</version> <!-- 3.1.2 TODO -->
     </parent>
 
     <properties>
@@ -37,7 +38,7 @@
         <version.flyway>9.16.3</version.flyway>
         <version.mapper>1.4.2.Final</version.mapper>
         <version.junit>4.13.1</version.junit>
-        <version.spring-cloud>2022.0.1</version.spring-cloud> <!-- some version TODO -->
+        <version.spring-cloud>2022.0.2</version.spring-cloud> <!-- some version TODO -->
     </properties>
 
     <dependencyManagement>

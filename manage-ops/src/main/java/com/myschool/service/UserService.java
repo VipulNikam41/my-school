@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import static com.myschool.constants.Defaults.HTTP;
 import static com.myschool.constants.MicroService.USER_DASHBOARD;
 
 @Service
@@ -25,7 +24,7 @@ public class UserService {
     @Loggable
     public UserResponse getUserById(UUID id) {
         return webClientBuilder.build().get()
-                .uri(HTTP + USER_DASHBOARD.getServiceName() + DashboardApi.GET_PROFILE.replace("{userId}", id.toString()))
+                .uri(USER_DASHBOARD.getService() + DashboardApi.GET_PROFILE.replace("{userId}", id.toString()))
                 .retrieve()
                 .bodyToMono(UserResponse.class)
                 .block();

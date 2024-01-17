@@ -2,6 +2,7 @@ package com.myschool.constants;
 
 import lombok.Getter;
 
+
 @Getter
 public enum MicroService {
     EXPLORER("explorer", "student landing page to get filtered institutes according to users needs"),
@@ -17,5 +18,9 @@ public enum MicroService {
     MicroService(String serviceName, String description) {
         this.serviceName = serviceName;
         this.description = description;
+    }
+
+    public String getService() {
+        return Defaults.HTTP + this.serviceName;
     }
 }

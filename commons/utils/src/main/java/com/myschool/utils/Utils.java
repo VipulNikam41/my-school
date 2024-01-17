@@ -4,15 +4,15 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Utils {
-    public String beautify(String str) {
-        if (StringUtil.isEmpty(str)) {
+    public java.lang.String beautify(java.lang.String str) {
+        if (StringTool.isEmpty(str)) {
             return str;
         }
-        String[] words = removeExtraSpaces(str).split("\\s+");
+        java.lang.String[] words = removeExtraSpaces(str).split("\\s+");
 
         StringBuilder result = new StringBuilder();
 
-        for (String word : words) {
+        for (java.lang.String word : words) {
             if (!result.isEmpty()) {
                 result.append(" ");
             }
@@ -22,23 +22,23 @@ public class Utils {
         return result.toString();
     }
 
-    public String removeExtraSpaces(String str) {
-        if (StringUtil.isEmpty(str)) {
+    public java.lang.String removeExtraSpaces(java.lang.String str) {
+        if (StringTool.isEmpty(str)) {
             return str;
         }
         return str.replaceAll("\\s+", " ").trim();
     }
 
-    public String capitalize(String str) {
-        if (StringUtil.isEmpty(str)) {
+    public java.lang.String capitalize(java.lang.String str) {
+        if (StringTool.isEmpty(str)) {
             return str;
         }
         if (str.length() == 1) {
             return str.toUpperCase();
         }
 
-        String firstLetterCapital = str.substring(0, 1).toUpperCase();
-        String restOfWordSmall = str.substring(1).toLowerCase();
+        java.lang.String firstLetterCapital = str.substring(0, 1).toUpperCase();
+        java.lang.String restOfWordSmall = str.substring(1).toLowerCase();
 
         return firstLetterCapital + restOfWordSmall;
     }

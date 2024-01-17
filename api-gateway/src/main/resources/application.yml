@@ -1,0 +1,29 @@
+server:
+  port: 1234
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-dashboard
+          uri: lb://user-dashboard
+          predicates:
+            - Path=/dashboard/**
+        - id: management-ops
+          uri: lb://management-ops
+          predicates:
+            - Path=/console/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:password@localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+  instance:
+    hostname: localhost
+    prefer-ip-address: true

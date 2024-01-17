@@ -7,4 +7,5 @@ public class Defaults {
 
     public static final String HTTP = "http://";
 
+    public static final String BATCH_NAME = "Default Batch";
 }

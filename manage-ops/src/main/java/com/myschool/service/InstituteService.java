@@ -19,6 +19,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class InstituteService {
     private final UserService userService;
+//    private final BatchService batchService;
 
     private final InstituteRepo instituteRepo;
     private final CourseRepo courseRepo;
@@ -77,5 +78,6 @@ public class InstituteService {
         }
 
         instituteRepo.save(institute);
+//        batchService.addDefaultBranch(institute.getId());
     }
 }
