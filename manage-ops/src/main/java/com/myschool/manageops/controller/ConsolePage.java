@@ -1,12 +1,12 @@
-package com.myschool.controller;
+package com.myschool.manageops.controller;
 
 import com.myschool.commons.dto.InstituteRequest;
 import com.myschool.commons.dto.InstituteResponse;
 import com.myschool.commons.dto.StaffRequest;
 import com.myschool.commons.dto.console.OwnerRegistrationRequest;
 import com.myschool.constants.endpoints.ConsoleApi;
-import com.myschool.service.InstituteService;
-import com.myschool.service.StaffService;
+import com.myschool.manageops.service.InstituteService;
+import com.myschool.manageops.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

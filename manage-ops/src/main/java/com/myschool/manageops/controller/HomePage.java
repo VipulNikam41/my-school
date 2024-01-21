@@ -1,4 +1,4 @@
-package com.myschool.controller;
+package com.myschool.manageops.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

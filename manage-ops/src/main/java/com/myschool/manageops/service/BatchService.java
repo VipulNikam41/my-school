@@ -1,4 +1,4 @@
-package com.myschool.service;
+package com.myschool.manageops.service;
 
 import com.myschool.commons.dto.BatchResponse;
 import com.myschool.commons.dto.UserResponse;
@@ -44,7 +44,7 @@ public class BatchService {
 
     public ResponseCode addStudent(AddStudent student, UUID instituteId) {
         if (student.getBatchId() == null) {
-            return ResponseCode.DATA_200;
+            student.setBatchId(instituteId);
         }
 
         Batch batch = batchRepo.findByIdAndInstituteId(student.getBatchId(), instituteId);

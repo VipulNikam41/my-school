@@ -1,4 +1,4 @@
-package com.myschool.service;
+package com.myschool.manageops.service;
 
 import com.myschool.constants.Privilege;
 import com.myschool.constants.StaffRole;

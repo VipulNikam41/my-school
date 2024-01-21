@@ -1,9 +1,9 @@
-package com.myschool.controller;
+package com.myschool.manageops.controller;
 
 import com.myschool.commons.dto.CourseResponse;
 import com.myschool.commons.dto.StaffResponse;
-import com.myschool.service.InstituteService;
-import com.myschool.service.StaffService;
+import com.myschool.manageops.service.InstituteService;
+import com.myschool.manageops.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

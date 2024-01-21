@@ -1,6 +1,6 @@
-package com.myschool;
+package com.myschool.manageops;
 
-import com.myschool.config.ApplicationConfig;
+import com.myschool.manageops.config.ApplicationConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

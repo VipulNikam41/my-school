@@ -1,4 +1,4 @@
-package com.myschool.config;
+package com.myschool.manageops.config;
 
 import lombok.RequiredArgsConstructor;
 import org.flywaydb.core.Flyway;

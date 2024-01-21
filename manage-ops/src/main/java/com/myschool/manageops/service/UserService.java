@@ -1,6 +1,5 @@
-package com.myschool.service;
+package com.myschool.manageops.service;
 
-import com.myschool.aspects.annotation.Loggable;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.constants.endpoints.DashboardApi;
@@ -21,7 +20,6 @@ import static com.myschool.constants.MicroService.USER_DASHBOARD;
 public class UserService {
     private final WebClient.Builder webClientBuilder;
 
-    @Loggable
     public UserResponse getUserById(UUID id) {
         return webClientBuilder.build().get()
                 .uri(USER_DASHBOARD.getService() + DashboardApi.GET_PROFILE.replace("{userId}", id.toString()))

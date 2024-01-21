@@ -76,7 +76,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.myschool.MySchoolApplication</mainClass>
+                    <mainClass>com.myschool.manageops.MySchoolApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>
