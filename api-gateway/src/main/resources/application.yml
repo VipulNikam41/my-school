@@ -7,19 +7,23 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-dashboard
-          uri: lb://user-dashboard
-          predicates:
-            - Path=/dashboard/**
         - id: management-ops
           uri: lb://management-ops
           predicates:
             - Path=/console/**
+            - Path=/dashboard/**
+        - id: discovery-server
+          uri: http://localhost:8761/eureka-web
+          predicates:
+            - Path=/eureka-web/**
+            - Path=/eureka/**
+          filters:
+            - SetPath=/eureka
 
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka:password@localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
     lease-renewal-interval-in-seconds: 10

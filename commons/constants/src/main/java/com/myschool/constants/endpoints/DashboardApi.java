@@ -5,6 +5,9 @@ public class DashboardApi {
 
     private static final String ROUTE = "/dashboard";
 
+    public static final String USER_LOGIN = ROUTE + "/login/profile/user";
+    public static final String USER_LOGOUT = ROUTE + "/logout/profile/user";
+
     public static final String REGISTER_PROFILE = ROUTE + "/profile/register";
     public static final String GET_PROFILE = ROUTE + "/profile/{userId}/get";
     public static final String UPDATE_PROFILE = ROUTE + "/profile/update/{userId}";

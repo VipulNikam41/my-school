@@ -9,8 +9,7 @@ public enum MicroService {
     MANAGE_OPS("management-ops", "staff/owner registration, student admission, institute/batch/course onboarding, staff attendance"),
     PAYMENTS("payments", "fee records, salary, expense manager"),
     SCHEDULER("scheduler", "all the schedulers"),
-    SYLLABUS_HUB("syllabus-hub", "lecture/ exam/ student attendance"),
-    USER_DASHBOARD("user-dashboard", "user registration to managing all his institutes, batches, exams, results user has rolled");
+    SYLLABUS_HUB("syllabus-hub", "lecture/ exam/ student attendance");
 
     private final String serviceName;
     private final String description;
