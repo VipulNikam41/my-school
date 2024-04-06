@@ -8,13 +8,15 @@ import com.myschool.constants.UserRole;
 import com.myschool.manageops.domain.entities.User;
 import com.myschool.manageops.domain.mapper.UserMapper;
 import com.myschool.manageops.domain.repository.UserRepo;
-import com.myschool.utils.CollectionTool;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +28,11 @@ public class ProfileService {
 
     public ResponseCode registerUser(UserRequest request) {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
-        if (!CollectionTool.isEmpty(users)) {
+        if (!CollectionUtils.isEmpty(users)) {
             boolean registeredUser = users.stream().anyMatch(
-                            u -> u.getContact().isEmailVerified() ||
+                    u -> u.getContact().isEmailVerified() ||
                             u.getContact().isPhoneNumberVerified()
-                    );
+            );
             if (registeredUser) {
                 return ResponseCode.REGISTRATION_201;
             }

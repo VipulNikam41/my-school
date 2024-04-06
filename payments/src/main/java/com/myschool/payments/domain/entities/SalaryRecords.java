@@ -1,4 +1,4 @@
-package com.myschool.payments.entities;
+package com.myschool.payments.domain.entities;
 
 import com.myschool.commons.entities.BaseEntity;
 import jakarta.persistence.Column;

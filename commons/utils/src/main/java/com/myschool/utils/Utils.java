@@ -1,11 +1,12 @@
 package com.myschool.utils;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.StringUtils;
 
 @UtilityClass
 public class Utils {
     public java.lang.String beautify(java.lang.String str) {
-        if (StringTool.isEmpty(str)) {
+        if (StringUtils.isEmpty(str)) {
             return str;
         }
         java.lang.String[] words = removeExtraSpaces(str).split("\\s+");
@@ -23,14 +24,14 @@ public class Utils {
     }
 
     public java.lang.String removeExtraSpaces(java.lang.String str) {
-        if (StringTool.isEmpty(str)) {
+        if (StringUtils.isEmpty(str)) {
             return str;
         }
         return str.replaceAll("\\s+", " ").trim();
     }
 
     public java.lang.String capitalize(java.lang.String str) {
-        if (StringTool.isEmpty(str)) {
+        if (StringUtils.isEmpty(str)) {
             return str;
         }
         if (str.length() == 1) {

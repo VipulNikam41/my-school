@@ -15,8 +15,8 @@ import com.myschool.manageops.domain.repository.BatchRepo;
 import com.myschool.manageops.domain.repository.BatchStudentsRepo;
 import com.myschool.utils.MathUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionTool;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -57,11 +57,11 @@ public class BatchService {
         }
 
         List<User> users = profileService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
-        if (!CollectionTool.isEmpty(users)) {
+        if (!CollectionUtils.isEmpty(users)) {
             return ResponseCode.NOTIFY_100;
         }
 
-        UUID studentId = new UUID(1,2);
+        UUID studentId = new UUID(1, 2);
 //        UUID studentId = profileService.registerUser(userMapper.studentToUser(student));
 
         BatchStudents batchStudents = new BatchStudents();
@@ -76,7 +76,7 @@ public class BatchService {
 
     public List<BatchResponse> getBatches(UUID instituteId, List<UUID> batchIds) {
         List<Batch> batches;
-        if (!CollectionTool.isEmpty(batchIds)) {
+        if (!CollectionUtils.isEmpty(batchIds)) {
             batches = batchRepo.findAllById(batchIds);
             batches = batches.stream().filter(b -> b.getInstituteId() != instituteId).toList();
         } else {
@@ -101,7 +101,7 @@ public class BatchService {
     }
 
     public List<UserResponse> getStudents(UUID instituteId, UUID batchId, List<UUID> studentIds) {
-        if(batchId == null && studentIds == null) {
+        if (batchId == null && studentIds == null) {
             return instituteService.getStudentsForInstitute(instituteId);
         }
 
@@ -123,7 +123,7 @@ public class BatchService {
     }
 
     public void addDefaultBranch(UUID instituteId) {
-        if(instituteId == null) {
+        if (instituteId == null) {
             return;
         }
 

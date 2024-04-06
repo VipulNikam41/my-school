@@ -9,15 +9,11 @@ import com.myschool.manageops.domain.repository.UserCredentialsRepo;
 import com.myschool.manageops.domain.repository.UserRepo;
 import com.myschool.manageops.domain.repository.UserSessionRepo;
 import com.myschool.manageops.utils.PasswordUtil;
-import com.myschool.utils.EncryptionUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,13 +30,13 @@ public class SessionService {
     public AuthTokenResponse getAuthToken(LoginRequest loginRequest) {
         try {
             List<User> users = userRepo.getUserByContact(loginRequest.getEmailId(), loginRequest.getEmailId());
-            if (users == null) {
+            if (CollectionUtils.isEmpty(users)) {
                 return null;
             }
 
             User selectedUser = users.get(0);
             UserCredentials credentials = userCredentialsRepo.findById(selectedUser.getId()).orElse(null);
-            if (!PasswordUtil.matchPassword(loginRequest.getPassword(), credentials.getPassword())) {
+            if (credentials == null || !PasswordUtil.matchPassword(loginRequest.getPassword(), credentials.getPassword())) {
                 return null;
             }
             List<UserSession> activeSessions = sessionRepo.getActiveSessionForUser(selectedUser.getId());

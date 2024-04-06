@@ -28,11 +28,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.myschool</groupId>
-            <artifactId>constants</artifactId>
-            <version>VERSION</version>
-        </dependency>
     </dependencies>
 
     <build>

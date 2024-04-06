@@ -11,7 +11,7 @@ import java.util.Date;
 @Service
 @RequiredArgsConstructor
 public class JwtUtil {
-    private static final String SECRET = "your-secret-key";
+    private static final String SECRET = "my-secret-key";
 
     public String getJwtTokenForUser(String authToken) {
         return Jwts.builder()

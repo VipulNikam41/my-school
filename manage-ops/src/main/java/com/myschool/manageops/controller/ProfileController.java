@@ -22,7 +22,7 @@ public class ProfileController {
     }
 
     @GetMapping(DashboardApi.GET_PROFILE)
-    public UserResponse getUser(HttpServletRequest request, @PathVariable UUID userId) {
+    public UserResponse getUser(@PathVariable UUID userId) {
         return profileService.getUser(userId);
     }
 

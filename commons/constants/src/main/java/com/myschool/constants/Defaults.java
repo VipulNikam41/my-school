@@ -9,7 +9,7 @@ public class Defaults {
 
     public static final String BATCH_NAME = "Default Batch";
 
-    public static final String USER_TOKEN = "userToken";
+    public static final String USER_TOKEN = "session-id";
 
     public static final Integer MAX_SESSION_ALLOWED = 2;
     public static final String ACCESS_TOKEN_SEPARATOR = ":SCHOOL:";

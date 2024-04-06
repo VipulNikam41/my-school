@@ -38,6 +38,7 @@ public class SessionManager {
         );
 
         return AuthTokenResponse.builder()
+                .userId(user.getId())
                 .authType(AUTH_TYPE)
                 .authToken(jwtToken)
                 .expiryTime(newSession.getEndsOn().toString())

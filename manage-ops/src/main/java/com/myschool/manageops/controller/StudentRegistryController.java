@@ -1,5 +1,6 @@
 package com.myschool.manageops.controller;
 
+import com.myschool.commons.dto.StatefulRequest;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.constants.ResponseCode;
@@ -36,7 +37,7 @@ public class StudentRegistryController {
     }
 
     @GetMapping("/console/staff/batch/student/get")
-    public UserResponse getStudents(@RequestParam UUID studentId) {
+    public UserResponse getStudents(@RequestParam UUID studentId, @RequestBody StatefulRequest statefulRequest) {
         return profileService.getUser(studentId);
     }
 }

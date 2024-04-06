@@ -1,7 +1,6 @@
 package com.myschool.apigateway.config;
 
 import com.myschool.apigateway.auth.HeaderFilter;
-import com.myschool.constants.endpoints.DashboardApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,13 +19,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
         serverHttpSecurity
                 .csrf().disable()
-                .authorizeExchange()
-                    .pathMatchers("/eureka/**").permitAll()
-                    .pathMatchers(DashboardApi.USER_LOGIN).permitAll()
-                    .anyExchange().authenticated().and()
-                .addFilterBefore(headerFilter, SecurityWebFiltersOrder.FIRST)
-                .formLogin().disable()
-                .httpBasic().disable();
+                .addFilterBefore(headerFilter, SecurityWebFiltersOrder.FIRST);
 
         return serverHttpSecurity.build();
     }

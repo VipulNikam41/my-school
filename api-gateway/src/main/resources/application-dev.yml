@@ -16,12 +16,15 @@ spring:
         - id: management-ops
           uri: lb://management-ops
           predicates:
-            - Path=/console/**
-            - Path=/dashboard/**
+            - Path=/console/**,/dashboard/**,/payment/**
         - id: discovery-server
-          uri: http://localhost:8761/eureka
+          uri: lb://discovery-server
           predicates:
-            - Path=/**
+            - Path=/eureka-web**,/eureka/**
+  security:
+    user:
+      name: foo
+      password: foo
 
 eureka:
   client:

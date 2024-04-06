@@ -1,4 +1,4 @@
-package com.myschool.payments.entities;
+package com.myschool.payments.domain.entities;
 
 import com.myschool.commons.entities.BaseEntity;
 import jakarta.persistence.Column;
@@ -12,17 +12,21 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class FeesRecords extends BaseEntity {
+public class Expenses extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
 
     private UUID instituteId;
 
-    private UUID cashierId;
-
-    private UUID studentId;
+    private UUID staffId;
 
     @Column(nullable = false, scale = 2)
     private BigDecimal amount;
+
+    private String description;
+
+    private boolean approved;
+
+    private UUID processorStaffId;
 }

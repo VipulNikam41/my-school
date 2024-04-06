@@ -33,7 +33,7 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: ${eureka_uri:http://eureka:password@localhost:8761/eureka}
+      defaultZone: http://localhost:8761/eureka
     registryFetchIntervalSeconds: 60
 
 management:
@@ -44,6 +44,3 @@ management:
     web:
       exposure:
         include: info,health,metrics
-
-security:
-  ignored=/**:
