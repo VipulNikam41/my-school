@@ -16,7 +16,6 @@
         <module>manage-ops</module>
         <module>payments</module>
         <module>syllabus-hub</module>
-        <module>scheduler</module>
         <module>api-gateway</module>
     </modules>
 

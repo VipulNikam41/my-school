@@ -1,10 +1,5 @@
 .gitignore
 .idea
-MySchool.iml
-application/application.iml
-commons/commons.iml
-models.iml
-constants.iml
 *.iml
 target
 logs

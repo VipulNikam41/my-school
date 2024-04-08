@@ -3,7 +3,6 @@ package com.myschool.manageops.eventpublisher;
 import com.myschool.manageops.events.NewInstituteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 
 import java.util.UUID;
