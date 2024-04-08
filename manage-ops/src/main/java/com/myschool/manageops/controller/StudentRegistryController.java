@@ -1,12 +1,13 @@
 package com.myschool.manageops.controller;
 
+import com.myschool.commons.dto.StatefulRequest;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.constants.ResponseCode;
 import com.myschool.constants.endpoints.ConsoleApi;
 import com.myschool.manageops.service.BatchService;
 import com.myschool.manageops.service.InstituteService;
-import com.myschool.manageops.service.UserService;
+import com.myschool.manageops.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class StudentRegistryController {
     private final InstituteService instituteService;
     private final BatchService batchService;
-    private final UserService userService;
+    private final ProfileService profileService;
 
     @PostMapping(ConsoleApi.ADD_STUDENT)
     public ResponseCode addStudent(@RequestBody AddStudent request, @PathVariable UUID instituteId) {
@@ -36,7 +37,7 @@ public class StudentRegistryController {
     }
 
     @GetMapping("/console/staff/batch/student/get")
-    public UserResponse getStudents(@RequestParam UUID studentId) {
-        return userService.getUserById(studentId);
+    public UserResponse getStudents(@RequestParam UUID studentId, @RequestBody StatefulRequest statefulRequest) {
+        return profileService.getUser(studentId);
     }
 }

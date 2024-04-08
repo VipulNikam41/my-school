@@ -6,16 +6,19 @@ import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.commons.dto.console.BatchRequest;
 import com.myschool.constants.Defaults;
 import com.myschool.constants.ResponseCode;
-import com.myschool.manageops.entities.Batch;
-import com.myschool.manageops.entities.BatchStudents;
-import com.myschool.manageops.mapper.BatchMapper;
-import com.myschool.manageops.repository.BatchRepo;
-import com.myschool.manageops.repository.BatchStudentsRepo;
+import com.myschool.manageops.domain.entities.Batch;
+import com.myschool.manageops.domain.entities.BatchStudents;
+import com.myschool.manageops.domain.entities.User;
+import com.myschool.manageops.domain.mapper.BatchMapper;
+import com.myschool.manageops.domain.mapper.UserMapper;
+import com.myschool.manageops.domain.repository.BatchRepo;
+import com.myschool.manageops.domain.repository.BatchStudentsRepo;
 import com.myschool.utils.MathUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
-import com.myschool.utils.CollectionTool;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,12 +26,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BatchService {
     private final InstituteService instituteService;
-    private final UserService userService;
+    private final ProfileService profileService;
 
     private final BatchRepo batchRepo;
     private final BatchStudentsRepo batchStudentsRepo;
 
     private final BatchMapper batchMapper;
+    private final UserMapper userMapper;
 
     public UUID validateAndAdd(BatchRequest batchRequest, UUID instituteId) {
         Batch batch = batchMapper.dtoToEntity(batchRequest);
@@ -52,12 +56,13 @@ public class BatchService {
             return ResponseCode.DATA_200;
         }
 
-        List<UserResponse> users = userService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
-        if (!CollectionTool.isEmpty(users)) {
+        List<User> users = profileService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
+        if (!CollectionUtils.isEmpty(users)) {
             return ResponseCode.NOTIFY_100;
         }
 
-        UUID studentId = userService.validateAndAdd(student);
+        UUID studentId = new UUID(1, 2);
+//        UUID studentId = profileService.registerUser(userMapper.studentToUser(student));
 
         BatchStudents batchStudents = new BatchStudents();
         batchStudents.setBatchId(student.getBatchId());
@@ -71,7 +76,7 @@ public class BatchService {
 
     public List<BatchResponse> getBatches(UUID instituteId, List<UUID> batchIds) {
         List<Batch> batches;
-        if (!CollectionTool.isEmpty(batchIds)) {
+        if (!CollectionUtils.isEmpty(batchIds)) {
             batches = batchRepo.findAllById(batchIds);
             batches = batches.stream().filter(b -> b.getInstituteId() != instituteId).toList();
         } else {
@@ -96,7 +101,7 @@ public class BatchService {
     }
 
     public List<UserResponse> getStudents(UUID instituteId, UUID batchId, List<UUID> studentIds) {
-        if(batchId == null && studentIds == null) {
+        if (batchId == null && studentIds == null) {
             return instituteService.getStudentsForInstitute(instituteId);
         }
 
@@ -105,7 +110,7 @@ public class BatchService {
             return null;
         }
 
-        return userService.getStudentByIdIn(studentIds);
+        return profileService.getStudentByIdIn(studentIds);
     }
 
     public Boolean updateStudent(AddStudent request, UUID instituteId, UUID batchId, UUID studentId) {
@@ -114,11 +119,11 @@ public class BatchService {
             return false;
         }
 
-        return userService.validateAndUpdate(request, studentId);
+        return profileService.validateAndUpdate(request, studentId);
     }
 
     public void addDefaultBranch(UUID instituteId) {
-        if(instituteId == null) {
+        if (instituteId == null) {
             return;
         }
 
@@ -127,6 +132,8 @@ public class BatchService {
         batch.setName(Defaults.BATCH_NAME);
         batch.setDescription(Defaults.BATCH_NAME);
         batch.setInstituteId(instituteId);
+        batch.setFees(BigDecimal.valueOf(0));
+        batch.setBatchSize(-1);
         batchRepo.save(batch);
     }
 }

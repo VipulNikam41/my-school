@@ -1,14 +1,16 @@
 package com.myschool.manageops.service;
 
 import com.myschool.commons.dto.*;
-import com.myschool.manageops.entities.Course;
-import com.myschool.manageops.entities.Institute;
-import com.myschool.manageops.entities.Staff;
-import com.myschool.manageops.mapper.CourseMapper;
-import com.myschool.manageops.mapper.InstituteMapper;
-import com.myschool.manageops.mapper.StaffMapper;
-import com.myschool.manageops.repository.CourseRepo;
-import com.myschool.manageops.repository.InstituteRepo;
+import com.myschool.commons.repository.ContactRepo;
+import com.myschool.manageops.domain.entities.Course;
+import com.myschool.manageops.domain.entities.Institute;
+import com.myschool.manageops.domain.entities.Staff;
+import com.myschool.manageops.eventpublisher.EventPublisher;
+import com.myschool.manageops.domain.mapper.CourseMapper;
+import com.myschool.manageops.domain.mapper.InstituteMapper;
+import com.myschool.manageops.domain.mapper.StaffMapper;
+import com.myschool.manageops.domain.repository.CourseRepo;
+import com.myschool.manageops.domain.repository.InstituteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +20,13 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class InstituteService {
-    private final UserService userService;
-//    private final BatchService batchService;
+    private final EventPublisher publish;
+
+    private final ProfileService profileService;
 
     private final InstituteRepo instituteRepo;
     private final CourseRepo courseRepo;
+    private final ContactRepo contactRepo;
 
     private final InstituteMapper instituteMapper;
     private final StaffMapper staffMapper;
@@ -41,7 +45,7 @@ public class InstituteService {
     public List<UserResponse> getStudentsForInstitute(UUID instituteId) {
         List<UUID> studentIds = instituteRepo.findStudentsIdsByInstituteId(instituteId);
 
-        return userService.getStudentByIdIn(studentIds);
+        return profileService.getStudentByIdIn(studentIds);
     }
 
     public List<CourseResponse> getCoursesForInstitute(UUID instituteId) {
@@ -77,7 +81,8 @@ public class InstituteService {
             institute.setHomeBranchId(homeInstiId);
         }
 
+        contactRepo.save(institute.getContact());
         instituteRepo.save(institute);
-//        batchService.addDefaultBranch(institute.getId());
+        publish.newInstituteEvent(institute.getId());
     }
 }

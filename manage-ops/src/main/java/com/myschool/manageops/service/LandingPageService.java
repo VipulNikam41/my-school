@@ -2,9 +2,9 @@ package com.myschool.manageops.service;
 
 import com.myschool.commons.dto.InstituteResponse;
 import com.myschool.commons.dto.LocationCords;
-import com.myschool.manageops.entities.Institute;
-import com.myschool.manageops.mapper.InstituteMapper;
-import com.myschool.manageops.repository.InstituteRepo;
+import com.myschool.manageops.domain.entities.Institute;
+import com.myschool.manageops.domain.mapper.InstituteMapper;
+import com.myschool.manageops.domain.repository.InstituteRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

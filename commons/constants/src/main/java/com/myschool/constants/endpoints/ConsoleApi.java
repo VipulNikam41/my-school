@@ -6,7 +6,7 @@ public class ConsoleApi {
     private static final String ROUTE = "/console";
 
     public static final String REGISTER_OWNER = ROUTE + "/register/owner";
-    public static final String ADD_INSTITUTE = ROUTE + "/add";
+    public static final String ADD_INSTITUTE = ROUTE + "/institute/add";
     public static final String ADD_SUB_INSTITUTE = ROUTE + "/{instituteId}/add";
     public static final String GET_INSTITUTES_BY_OWNER = ROUTE + "/owner/{ownerId}";
 
