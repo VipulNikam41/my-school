@@ -16,7 +16,7 @@ spring:
         - id: management-ops
           uri: lb://management-ops
           predicates:
-            - Path=/console/**,/dashboard/**,/payment/**
+            - Path=/console/**,/dashboard/**,/app/dashboard/**
         - id: discovery-server
           uri: lb://discovery-server
           predicates:

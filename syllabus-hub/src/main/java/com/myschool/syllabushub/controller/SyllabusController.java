@@ -3,6 +3,7 @@ package com.myschool.syllabushub.controller;
 import com.myschool.commons.dto.syllabushub.AddBaCoIn;
 import com.myschool.commons.dto.syllabushub.LectureRequest;
 import com.myschool.commons.dto.syllabushub.LectureResponse;
+import com.myschool.constants.endpoints.DashboardApi;
 import com.myschool.constants.endpoints.SyllabusHubApi;
 import com.myschool.syllabushub.service.BaCoInService;
 import com.myschool.syllabushub.service.SyllabusService;

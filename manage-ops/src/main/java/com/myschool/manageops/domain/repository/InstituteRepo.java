@@ -36,7 +36,7 @@ public interface InstituteRepo extends JpaRepository<Institute, UUID> {
     List<Institute> findByLocation(String xMin, String xMax, String yMin, String yMax);
 
     @Query("SELECT COUNT(bs) = :numStudentIds FROM BatchStudents bs " +
-            "JOIN Batch b ON bs.batchId = b.id" +
-            "WHERE bs.instituteId = :instituteId AND bs.studentId IN (:studentIds)")
-    boolean checkStudentBelongsToInstitute(UUID instituteId, int numStudentIds, UUID[] studentIds);
+            "JOIN Batch b ON bs.batchId = b.id " +
+            "WHERE b.instituteId = :instituteId AND bs.studentId IN (:studentIds)")
+    boolean checkStudentBelongsToInstitute(UUID instituteId, int numStudentIds, UUID... studentIds);
 }

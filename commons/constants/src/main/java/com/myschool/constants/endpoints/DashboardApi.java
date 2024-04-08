@@ -3,6 +3,7 @@ package com.myschool.constants.endpoints;
 public class DashboardApi {
     private DashboardApi() {}
 
+    public static final String APP_ROUTE = "/app/dashboard";
     private static final String ROUTE = "/dashboard";
 
     public static final String USER_LOGIN = ROUTE + "/login/profile/user";

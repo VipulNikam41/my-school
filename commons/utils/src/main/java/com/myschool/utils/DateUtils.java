@@ -11,7 +11,7 @@ public class DateUtils {
     private static final TimeZone defaultTimeZone = TimeZone.getTimeZone("Asia/Kolkata");
 
     public static Date getDate(int year, int month, int date, int hourOfDay, int minute, int second) {
-        Calendar calendar = Calendar.getInstance()
+        Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(defaultTimeZone);
         calendar.set(year, month, date, hourOfDay, minute, second);
         return calendar.getTime();

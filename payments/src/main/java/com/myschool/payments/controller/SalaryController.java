@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SalaryController {
     private final SalaryService salaryService;
 
-    @PostMapping(PaymentApi.ADD_FEES_PAYMENT)
+    @PostMapping(PaymentApi.ADD_SALARY_PAID)
     public Boolean addExpense(ServerHttpRequest request, @RequestBody AddSalary addSalary) {
         return salaryService.saveSalary(addSalary);
     }

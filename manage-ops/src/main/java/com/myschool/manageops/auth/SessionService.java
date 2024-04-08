@@ -51,9 +51,12 @@ public class SessionService {
     }
 
     public UUID authenticateSession(String jwtToken) {
-        String token = jwtToken.replace(AUTH_TYPE + " ", "");
-
-        return sessionManager.getUserId(token);
+        try {
+            String token = jwtToken.replace(AUTH_TYPE + " ", "");
+            return sessionManager.getUserId(token);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public Boolean logOutUser(HttpServletRequest request) {
