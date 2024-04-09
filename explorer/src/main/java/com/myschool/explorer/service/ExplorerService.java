@@ -2,6 +2,7 @@ package com.myschool.explorer.service;
 
 import com.myschool.commons.dto.InstituteResponse;
 import com.myschool.commons.dto.LocationCords;
+import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,6 @@ public class ExplorerService {
 
     public List<InstituteResponse> getInstituteByCategory(LocationCords cords, String categoryId) {
         // internal api call TODO
-        return null;
+        return Collections.emptyList();
     }
 }
