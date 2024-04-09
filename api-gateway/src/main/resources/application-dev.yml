@@ -17,6 +17,13 @@ spring:
           uri: lb://management-ops
           predicates:
             - Path=/console/**,/dashboard/**,/app/dashboard/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 15
+                redis-rate-limiter.burstCapacity: 40
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@keyResolver}"
         - id: discovery-server
           uri: lb://discovery-server
           predicates:
@@ -25,6 +32,9 @@ spring:
     user:
       name: foo
       password: foo
+  redis:
+    host: localhost
+    port: 6379
 
 eureka:
   client:

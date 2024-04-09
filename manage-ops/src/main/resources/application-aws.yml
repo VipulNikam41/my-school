@@ -21,6 +21,12 @@ spring:
     schemas: public
     locations: classpath:db/migration
     cleanDisabled: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      group-id: instituteEventId
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 logging:
   level:

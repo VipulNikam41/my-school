@@ -17,5 +17,5 @@ public class Defaults {
     public static final String SECRET_SIGN_KEY = "YourSecretKey";
     public static final String AUTHORIZATION = "Authorization";
     public static final String AUTH_TYPE = "Bearer";
-    public static final int AUTH_TOKEN_EXPIRY_TIME = 600_000;
+    public static final int AUTH_TOKEN_EXPIRY_TIME = 60 * 60 * 1000;
 }

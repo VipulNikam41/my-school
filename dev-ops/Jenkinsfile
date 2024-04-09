@@ -28,7 +28,7 @@ pipeline {
         }
         stage("SonarQube Analysis") {
             steps {
-                echo 'TODO'
+                echo 'TODO: manually make sure SonarLint Intellij plugin is not showing any issues'
             }
         }
         stage("Containerize") {
