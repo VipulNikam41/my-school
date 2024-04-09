@@ -19,6 +19,11 @@
         <module>models</module>
     </modules>
 
+    <properties>
+        <version.apache.commons>3.12.0</version.apache.commons>
+        <version.commons.collections>3.2.2</version.commons.collections>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -30,6 +35,16 @@
                 <groupId>com.myschool</groupId>
                 <artifactId>constants</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${version.apache.commons}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${version.commons.collections}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

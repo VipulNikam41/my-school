@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class BaseResponse {
-    private Status status;
+    private ApiResponseStatus apiResponseStatus;
+    private ApiResponseDescription apiResponseDescription;
 }

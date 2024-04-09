@@ -1,0 +1,24 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: payments
+  datasource:
+    url: jdbc:postgresql://my-school.cqkytc8dhq8x.ap-south-1.rds.amazonaws.com:5432/my_school
+    username: root
+    password: root1234
+    driverClassName: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
