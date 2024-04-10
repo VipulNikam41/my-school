@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  manage-ops:
+    container_name: manage-ops
+    image: manage-ops
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - my-network
+  syllabus-hub:
+    container_name: syllabus-hub
+    image: syllabus-hub
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - my-network
+  payments:
+    container_name: payments
+    image: payments
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    name: my-network
+    driver: bridge
+    external: true
