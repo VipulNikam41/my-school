@@ -19,17 +19,11 @@
         <module>models</module>
     </modules>
 
-    <properties>
-        <version.apache.commons>3.12.0</version.apache.commons>
-        <version.commons.collections>3.2.2</version.commons.collections>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
-                <version>${version.mapper}</version>
             </dependency>
             <dependency>
                 <groupId>com.myschool</groupId>

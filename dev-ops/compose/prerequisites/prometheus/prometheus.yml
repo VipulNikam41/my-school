@@ -1,0 +1,35 @@
+global:
+  scrape_interval:     10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'api_gateway'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['192.168.1.2:1234']
+        labels:
+          application: 'Api gateway'
+  - job_name: 'discovery_server'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['192.168.1.2:8761']
+        labels:
+          application: 'Discovery server'
+  - job_name: 'manage_ops'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['192.168.1.2:54706']
+        labels:
+          application: 'Manage ops'
+  - job_name: 'payments'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['192.168.1.2:54742']
+        labels:
+          application: 'Payments'
+  - job_name: 'syllabus_hub'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ '192.168.1.2:54722' ]
+        labels:
+          application: 'Syllabus hub'

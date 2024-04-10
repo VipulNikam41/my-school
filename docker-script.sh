@@ -38,6 +38,7 @@ cd ../..
 docker ps
 
 # check logs
+# (only startup logs will be appear here, all the application logs are in /logs folder (except for third party images))
 # docker logs -f <container name>
 
 # debug in interactive mode

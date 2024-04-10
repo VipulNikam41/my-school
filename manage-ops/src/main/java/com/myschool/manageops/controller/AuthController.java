@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class AuthController {
     }
 
     @PostMapping(DashboardApi.USER_LOGOUT)
-    public Boolean userLogout(HttpServletRequest request) {
+    public Boolean userLogout(ServerHttpRequest request) {
         return sessionService.logOutUser(request);
     }
 }

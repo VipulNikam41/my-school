@@ -1,5 +1,6 @@
 package com.myschool.apigateway.auth;
 
+import com.myschool.apigateway.config.ValidationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,11 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class HeaderFilter implements WebFilter {
+    private final ValidationProperties validationProperties;
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        if (exchange.getRequest().getURI().getPath().startsWith("/eureka")) {
+        if (validationProperties.exclude(exchange)) {
             return chain.filter(exchange);
         }
 

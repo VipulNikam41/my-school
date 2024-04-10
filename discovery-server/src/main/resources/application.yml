@@ -16,6 +16,12 @@ eureka:
   dashboard:
     path: /eureka
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,metrics,info,health
+
 logging:
   level:
     com:

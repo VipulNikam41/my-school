@@ -3,7 +3,7 @@
 
     <springProperty name = "mainLevel" source= "logging.level.com.myschool"/>
     <appender name="allLogs" class="ch.qos.logback.core.FileAppender">
-        <file>${LOGS}/manage-ops.log</file>
+        <file>${LOGS}/explorer.log</file>
         <append>true</append>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
