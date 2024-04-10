@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # compile whole code
 mvn clean install
@@ -50,17 +50,17 @@ docker ps
 
 ######## clean up ########
 
-# stop container
+## stop container
 #docker stop payments manage-ops syllabus-hub
 #docker stop api-gateway discovery-server
 #docker stop broker zookeeper
 
-# remove container
+## remove container
 #docker rm payments manage-ops syllabus-hub
 #docker rm api-gateway discovery-server
 #docker rm broker zookeeper
 
-# remove images
+## remove images
 #docker rmi payments manage-ops syllabus-hub
 #docker rmi api-gateway discovery-server
 #docker rmi confluentinc/cp-kafka:7.0.1 confluentinc/cp-zookeeper:7.0.1
