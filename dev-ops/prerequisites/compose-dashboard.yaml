@@ -6,9 +6,9 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./dashboard-config/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
-      - my-network
+      - school-house
 
   grafana:
     image: grafana/grafana-oss:8.5.2
@@ -21,10 +21,9 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=password
     networks:
-      - my-network
+      - school-house
 
 networks:
-  my-network:
-    name: my-network
+  school-house:
     driver: host
     external: true

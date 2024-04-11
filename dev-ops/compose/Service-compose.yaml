@@ -2,28 +2,33 @@ version: '3.7'
 services:
   manage-ops:
     container_name: manage-ops
-    image: manage-ops
+    image: ${LOCATION}manage-ops${VERSION}
+    volumes:
+      - ${LOG_DIR}:/home/app/manage-ops/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
-      - my-network
+      - school-house
   syllabus-hub:
     container_name: syllabus-hub
-    image: syllabus-hub
+    image: ${LOCATION}syllabus-hub${VERSION}
+    volumes:
+      - ${LOG_DIR}:/home/app/syllabus-hub/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
-      - my-network
+      - school-house
   payments:
     container_name: payments
-    image: payments
+    image: ${LOCATION}payments${VERSION}
+    volumes:
+      - ${LOG_DIR}:/home/app/payments/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
-      - my-network
+      - school-house
 
 networks:
-  my-network:
-    name: my-network
+  school-house:
     driver: bridge
     external: true

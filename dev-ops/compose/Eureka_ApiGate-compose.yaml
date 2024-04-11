@@ -1,28 +1,33 @@
 version: '3.7'
 services:
   discovery-server:
-    image: discovery-server
     container_name: discovery-server
+    image: ${LOCATION}discovery-server${VERSION}
     ports:
       - 8761:8761
+    volumes:
+      - ${LOG_DIR}/discovery-server.log:/home/app/discovery-server/logs/discovery-server.log
     environment:
       SPRING_PROFILES_ACTIVE: dev
     networks:
-      - my-network
+      - school-house
+
   api-gateway:
-    image: api-gateway
     container_name: api-gateway
+    image: ${LOCATION}api-gateway${VERSION}
     depends_on:
       - discovery-server
     ports:
       - 1234:1234
+    volumes:
+      - ${LOG_DIR}/api-gateway.log:/home/app/api-gateway/logs/api-gateway.log
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
-      - my-network
+      - school-house
 
 networks:
-  my-network:
-    name: my-network
+  school-house:
+    name: school-house
     driver: bridge
     external: true

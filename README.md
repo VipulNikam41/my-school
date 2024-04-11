@@ -6,7 +6,7 @@
 docker-script.sh file takes care of compiling code and get the services up. once all containers runnign, wait for 30 seconds for all containers to register with eureka and fetch the latest registry. Then you can access the eureka dashboard at
 `http://localhost:1234/eureka-web`
 ```shell
-./docker-script.sh
+./docker-start.sh
 ```
 
 for cleanup go to bottom of `docker-script.sh`, uncomment and copy cleanup script and run it to stop, remove container and delete images
