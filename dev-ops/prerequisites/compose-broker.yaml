@@ -9,7 +9,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     networks:
-      - my-network
+      - school-house
 
   broker:
     image: confluentinc/cp-kafka:7.0.1
@@ -27,10 +27,18 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     networks:
-      - my-network
+      - school-house
+
+  redis:
+    image: redis:7.2.4
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - school-house
 
 networks:
-  my-network:
-    name: my-network
-    driver: bridge
+  school-house:
     external: true
+    driver: bridge
+    name: school-house

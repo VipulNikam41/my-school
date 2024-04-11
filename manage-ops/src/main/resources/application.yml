@@ -29,3 +29,16 @@ logging:
       hibernate: DEBUG
     com:
       myschool: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,metrics,info,health
+
+validation:
+  excluded-paths:
+    - "^/public/.*"
+    - "^/healthcheck$"
+    - "^/actuator.*"
+    - "/dashboard/login/profile/user"

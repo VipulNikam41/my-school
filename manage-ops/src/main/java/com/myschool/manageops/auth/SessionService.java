@@ -12,6 +12,7 @@ import com.myschool.manageops.utils.PasswordUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,8 +60,8 @@ public class SessionService {
         }
     }
 
-    public Boolean logOutUser(HttpServletRequest request) {
-        String token = request.getHeader(AUTHORIZATION)
+    public Boolean logOutUser(ServerHttpRequest request) {
+        String token = request.getHeaders().get(AUTHORIZATION).get(0)
                 .replace(AUTH_TYPE + " ", "");
 
         return sessionManager.expireCurrentSession(token);

@@ -38,3 +38,17 @@ eureka:
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,metrics,info,health
+
+validation:
+  excluded-paths:
+    - "^/public/.*"
+    - "^/healthcheck$"
+    - "^/eureka.*"
+    - "^/actuator.*"
+    - "/dashboard/login/profile/user"

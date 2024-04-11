@@ -1,6 +1,7 @@
 package com.myschool.manageops.auth;
 
 import com.myschool.constants.endpoints.DashboardApi;
+import com.myschool.manageops.setup.config.ValidationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,14 +12,17 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class JwtTokenFilter implements WebFilter {
     private final SessionService sessionService;
+    private final ValidationProperties validationProperties;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        if (exchange.getRequest().getURI().getPath().equals(DashboardApi.USER_LOGIN)) {
+        if (validationProperties.exclude(exchange)) {
             return chain.filter(exchange);
         }
         if (exchange.getRequest().getBody().toString().contains("currentLoggedInUser")) {
@@ -30,7 +34,7 @@ public class JwtTokenFilter implements WebFilter {
         HttpHeaders headers = request.getHeaders();
         String token = headers.getFirst(HttpHeaders.AUTHORIZATION);
 
-        String userId = String.valueOf(sessionService.authenticateSession(token));
+        UUID userId = sessionService.authenticateSession(token);
         if (userId == null) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
