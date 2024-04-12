@@ -4,7 +4,7 @@ services:
     container_name: manage-ops
     image: ${LOCATION}manage-ops${VERSION}
     volumes:
-      - ${LOG_DIR}:/home/app/manage-ops/logs
+      - ${LOG_DIR}/manage-ops:/home/app/manage-ops/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
@@ -12,8 +12,10 @@ services:
   syllabus-hub:
     container_name: syllabus-hub
     image: ${LOCATION}syllabus-hub${VERSION}
+    depends_on:
+      - manage-ops
     volumes:
-      - ${LOG_DIR}:/home/app/syllabus-hub/logs
+      - ${LOG_DIR}/syllabus-hub:/home/app/syllabus-hub/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
@@ -21,8 +23,10 @@ services:
   payments:
     container_name: payments
     image: ${LOCATION}payments${VERSION}
+    depends_on:
+      - manage-ops
     volumes:
-      - ${LOG_DIR}:/home/app/payments/logs
+      - ${LOG_DIR}/payments:/home/app/payments/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:

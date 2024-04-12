@@ -25,8 +25,10 @@ function remove_images {
 if [ $# -eq 0 ] || [ "$1" = "stop" ]; then
     stop_container
 elif [ "$1" = "rm" ]; then
+    stop_container
     remove_container
 elif [ "$1" = "rmi" ]; then
+    stop_container
     remove_container
     remove_images
 else
