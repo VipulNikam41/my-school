@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+        - name: payments
+          image: vipuldoger/payments:1.0
+          ports:
+            - containerPort: 9423
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          volumeMounts:
+            - name: payments-logs
+              mountPath: /home/app/payments/logs
+              subPath: payments.log
+      volumes:
+        - name: payments-logs
+          persistentVolumeClaim:
+            claimName: logs-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments
+spec:
+  selector:
+    app: payments
+  ports:
+    - protocol: TCP
+      port: 9423
+      targetPort: 9423

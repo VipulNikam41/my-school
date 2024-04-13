@@ -1,6 +1,5 @@
 package com.myschool.manageops.auth;
 
-import com.myschool.constants.endpoints.DashboardApi;
 import com.myschool.manageops.setup.config.ValidationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

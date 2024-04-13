@@ -17,4 +17,4 @@ RUN chmod +x ${PROJECT_JAR}
 
 ENV SPRING_PROFILES_ACTIVE=dev
 
-CMD ["java", "-jar", "/home/app/manage-ops/manage-ops-VERSION.jar", "--spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]
+CMD ["java", "-jar", "manage-ops-VERSION.jar", "--spring.profiles.active=${SPRING_PROFILES_ACTIVE}"]

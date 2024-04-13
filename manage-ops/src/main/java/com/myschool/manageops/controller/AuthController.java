@@ -5,7 +5,6 @@ import com.myschool.commons.dto.LoginRequest;
 import com.myschool.constants.Defaults;
 import com.myschool.constants.endpoints.DashboardApi;
 import com.myschool.manageops.auth.SessionService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

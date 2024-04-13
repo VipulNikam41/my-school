@@ -1,7 +1,6 @@
 package com.myschool.commons.dto.syllabushub;
 
 import com.myschool.commons.dto.StatefulRequest;
-import com.myschool.commons.entities.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;
