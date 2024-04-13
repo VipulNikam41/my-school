@@ -49,6 +49,7 @@ public class ProfileService {
     }
 
     public UserResponse getUser(UUID userId) {
+        log.info(" :: getUser :: requested for user {}", userId);
         User user = userRepo.findById(userId).orElse(null);
         if (user == null) {
             return null;

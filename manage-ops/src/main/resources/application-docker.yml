@@ -27,6 +27,9 @@ spring:
       group-id: instituteEventId
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  redis:
+    host: redis
+    port: 6379
 
 logging:
   level:

@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   manage-ops:
-    container_name: manage-ops
+    container_name: management-ops
     image: ${LOCATION}manage-ops${VERSION}
     volumes:
       - ${LOG_DIR}/manage-ops:/home/app/manage-ops/logs
@@ -34,5 +34,6 @@ services:
 
 networks:
   school-house:
-    driver: bridge
     external: true
+    driver: bridge
+    name: school-house
