@@ -16,7 +16,7 @@ spec:
         - name: syllabus-hub
           image: vipuldoger/syllabus-hub:1.0
           ports:
-            - containerPort: 5211
+            - containerPort: 3417
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
@@ -40,5 +40,5 @@ spec:
     app: syllabus-hub
   ports:
     - protocol: TCP
-      port: 5211
-      targetPort: 5211
+      port: 3417
+      targetPort: 3417

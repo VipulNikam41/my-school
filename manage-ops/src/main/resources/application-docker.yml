@@ -49,3 +49,8 @@ management:
   health:
     circuitbreakers:
       enabled: true
+
+service:
+  endpoint:
+    payments: http://payments:3417
+    syllabus-hub: http://syllabus-hub:3417

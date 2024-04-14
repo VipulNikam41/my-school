@@ -31,7 +31,7 @@ docker tag payments:new vipuldoger/payments:"$1"
 docker tag syllabus-hub:new vipuldoger/syllabus-hub:"$1"
 
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 <argument>"
+    echo "Usage: $1 <argument>"
     exit 1
 fi
 

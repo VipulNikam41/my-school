@@ -6,6 +6,7 @@ import com.myschool.commons.dto.console.AddStudent;
 import com.myschool.commons.dto.console.BatchRequest;
 import com.myschool.constants.Defaults;
 import com.myschool.constants.ResponseCode;
+import com.myschool.constants.event.Situation;
 import com.myschool.manageops.domain.entities.Batch;
 import com.myschool.manageops.domain.entities.BatchStudents;
 import com.myschool.manageops.domain.entities.User;
@@ -13,7 +14,9 @@ import com.myschool.manageops.domain.mapper.BatchMapper;
 import com.myschool.manageops.domain.mapper.UserMapper;
 import com.myschool.manageops.domain.repository.BatchRepo;
 import com.myschool.manageops.domain.repository.BatchStudentsRepo;
+import com.myschool.manageops.event.EventPublisher;
 import com.myschool.utils.MathUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,8 @@ public class BatchService {
     private final BatchMapper batchMapper;
     private final UserMapper userMapper;
 
+    private final EventPublisher eventPublisher;
+
     public UUID validateAndAdd(BatchRequest batchRequest, UUID instituteId) {
         Batch batch = batchMapper.dtoToEntity(batchRequest);
         batch.setInstituteId(instituteId);
@@ -46,6 +51,7 @@ public class BatchService {
         return batch.getId();
     }
 
+    @Transactional(rollbackOn = Exception.class)
     public ResponseCode addStudent(AddStudent student, UUID instituteId) {
         if (student.getBatchId() == null) {
             student.setBatchId(instituteId);
@@ -56,20 +62,21 @@ public class BatchService {
             return ResponseCode.DATA_200;
         }
 
-        List<User> users = profileService.getStudentByContact(student.getContact().getEmail(), student.getContact().getPhoneNumber());
+        List<User> users = profileService.getStudentByContactForInstitute(student.getUser().getContact().getEmail(), student.getUser().getContact().getPhoneNumber(), instituteId);
         if (!CollectionUtils.isEmpty(users)) {
             return ResponseCode.NOTIFY_100;
         }
 
-        UUID studentId = new UUID(1, 2);
-//        UUID studentId = profileService.registerUser(userMapper.studentToUser(student));
+        UUID studentId = profileService.registerUser(student.getUser()).getId();
+        if (studentId == null) {
+            return ResponseCode.FAILURE_200;
+        }
 
         BatchStudents batchStudents = new BatchStudents();
         batchStudents.setBatchId(student.getBatchId());
         batchStudents.setStudentId(studentId);
         batchStudents.setDiscountedFees(student.getDiscountedFees());
         batchStudentsRepo.save(batchStudents);
-        // what if save fails? somehow need to roll back TODO
 
         return ResponseCode.SUCCESSFUL_100;
     }
@@ -135,5 +142,28 @@ public class BatchService {
         batch.setFees(BigDecimal.valueOf(0));
         batch.setBatchSize(-1);
         batchRepo.save(batch);
+    }
+
+    public List<UserResponse> getStudentsByContact(String emailId, String phoneNumber) {
+        List<User> users = profileService.getStudentByContact(emailId, phoneNumber);
+        List<User> verifiedUser = users.stream().filter(
+                user -> user.getContact().isEmailVerified() || user.getContact().isPhoneNumberVerified()
+        ).toList();
+        if (!verifiedUser.isEmpty()) {
+            if (verifiedUser.size() != 1) {
+                eventPublisher.publishSystemMonitorEvent(
+                        this.getClass(),
+                        "getStudentsByContact",
+                        verifiedUser.size() + " verified users found for email: " + emailId + " phone: " + phoneNumber,
+                        Situation.DB_DISCREPANCY
+                );
+            }
+            return verifiedUser.stream()
+                    .map(userMapper::entityToDto)
+                    .toList();
+        }
+        return users.stream()
+                .map(userMapper::entityToDto)
+                .toList();
     }
 }

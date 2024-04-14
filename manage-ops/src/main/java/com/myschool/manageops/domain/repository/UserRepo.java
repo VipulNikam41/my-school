@@ -24,9 +24,21 @@ public interface UserRepo extends JpaRepository<User, UUID> {
 
     @Query("Select u FROM User u " +
             "WHERE u.contact.email = :email AND u.contact.emailVerified = true")
-    User getStudentByEmail(@Param("email") String email);
+    User getUserByVerifiedEmail(@Param("email") String email);
+
+    List<User> findByContactEmail(String email);
 
     @Query("Select u FROM User u " +
             "WHERE u.contact.phoneNumber = :phoneNumber AND u.contact.phoneNumberVerified = true")
-    User getStudentByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+    User getUserByVerifiedPhone(String phoneNumber);
+
+    List<User> findByContactPhoneNumber(String phoneNumber);
+
+    @Query("SELECT u FROM User u " +
+            "INNER JOIN BatchStudents bs ON u.id = bs.studentId " +
+            "INNER JOIN Batch b ON b.id = bs.batchId " +
+            "WHERE b.instituteId = :instituteId " +
+            "AND u.contact.email = :email " +
+            "OR u.contact.phoneNumber = :phoneNumber")
+    List<User> getStudentByContactForInstitute(String email, String phoneNumber, UUID instituteId);
 }

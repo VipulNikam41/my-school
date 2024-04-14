@@ -10,10 +10,18 @@ public class RedisClient {
     private final RedisTemplate<String, String> redisTemplate;
 
     public void setValue(String key, String value) {
-        redisTemplate.opsForValue().set(key, value);
+        try {
+            redisTemplate.opsForValue().set(key, value);
+        } catch (Exception e) {
+            // ignore
+        }
     }
 
     public String getValue(String key) {
-        return redisTemplate.opsForValue().get(key);
+        try {
+            return redisTemplate.opsForValue().get(key);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

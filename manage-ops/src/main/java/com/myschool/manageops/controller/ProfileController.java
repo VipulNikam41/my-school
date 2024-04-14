@@ -17,7 +17,7 @@ public class ProfileController {
     private final ProfileService profileService;
 
     @PostMapping(DashboardApi.REGISTER_PROFILE)
-    public ResponseCode registerUser(ServerHttpRequest request, @RequestBody UserRequest userRequest) {
+    public UserResponse registerUser(ServerHttpRequest request, @RequestBody UserRequest userRequest) {
         return profileService.registerUser(userRequest);
     }
 

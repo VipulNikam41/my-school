@@ -10,7 +10,7 @@ ENV PROJECT_DIR=syllabus-hub
 
 RUN mkdir -p /home/app/${PROJECT_DIR}
 
-COPY target/syllabus-hub-VERSION.jar /home/app/${PROJECT_DIR}/${PROJECT_JAR}
+COPY target/${PROJECT_JAR} /home/app/${PROJECT_DIR}/${PROJECT_JAR}
 
 WORKDIR /home/app/${PROJECT_DIR}
 RUN chmod +x ${PROJECT_JAR}

@@ -1,11 +1,11 @@
-package com.myschool.manageops.controller;
+package com.myschool.manageops.controller.console;
 
 import com.myschool.commons.dto.AuthTokenResponse;
 import com.myschool.commons.dto.LoginRequest;
 import com.myschool.constants.Defaults;
-import com.myschool.constants.endpoints.DashboardApi;
+import com.myschool.constants.endpoints.ConsoleApi;
 import com.myschool.manageops.auth.SessionService;
-import com.myschool.manageops.service.ProfileService;
+import com.myschool.manageops.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+
 @RestController
 @RequiredArgsConstructor
-public class AuthController {
-    private final ProfileService profileService;
+public class StaffAuth {
+    private final StaffService staffService;
     private final SessionService sessionService;
 
-    @PostMapping(DashboardApi.USER_LOGIN)
-    public ResponseEntity<AuthTokenResponse> userLogin(@RequestBody LoginRequest request) {
-        UUID userId = profileService.getUser(request);
-        AuthTokenResponse authTokenResponse = sessionService.getAuthToken(userId);
+    @PostMapping(ConsoleApi.STAFF_LOGIN)
+    public ResponseEntity<AuthTokenResponse> staffLogin(@RequestBody LoginRequest request) {
+        UUID staffId = staffService.getStaffId(request);
+        AuthTokenResponse authTokenResponse = sessionService.getAuthToken(staffId);
         HttpHeaders headers = new HttpHeaders();
         headers.add(Defaults.USER_TOKEN, authTokenResponse.getAuthToken());
 
@@ -34,8 +35,8 @@ public class AuthController {
                 .body(authTokenResponse);
     }
 
-    @PostMapping(DashboardApi.USER_LOGOUT)
-    public Boolean userLogout(ServerHttpRequest request) {
+    @PostMapping(ConsoleApi.STAFF_LOGOUT)
+    public Boolean staffLogout(ServerHttpRequest request) {
         return sessionService.logOutUser(request);
     }
 }

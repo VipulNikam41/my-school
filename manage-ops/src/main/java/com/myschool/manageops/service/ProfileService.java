@@ -1,13 +1,19 @@
 package com.myschool.manageops.service;
 
+import com.myschool.commons.dto.LoginRequest;
 import com.myschool.commons.dto.UserRequest;
 import com.myschool.commons.dto.UserResponse;
 import com.myschool.commons.dto.console.AddStudent;
+import com.myschool.commons.dto.support.ApiResponseStatus;
 import com.myschool.constants.ResponseCode;
+import com.myschool.constants.ResponseId;
 import com.myschool.constants.UserRole;
 import com.myschool.manageops.domain.entities.User;
+import com.myschool.manageops.domain.entities.UserCredentials;
 import com.myschool.manageops.domain.mapper.UserMapper;
+import com.myschool.manageops.domain.repository.UserCredentialsRepo;
 import com.myschool.manageops.domain.repository.UserRepo;
+import com.myschool.manageops.utils.PasswordUtil;
 import com.myschool.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +29,11 @@ import java.util.UUID;
 @Slf4j
 public class ProfileService {
     private final UserRepo userRepo;
+    private final UserCredentialsRepo userCredentialsRepo;
 
     private final UserMapper userMapper;
 
-    public ResponseCode registerUser(UserRequest request) {
+    public UserResponse registerUser(UserRequest request) {
         List<User> users = userRepo.getUserByContact(request.getContact().getEmail(), request.getContact().getPhoneNumber());
         if (!CollectionUtils.isEmpty(users)) {
             boolean registeredUser = users.stream().anyMatch(
@@ -34,7 +41,12 @@ public class ProfileService {
                             u.getContact().isPhoneNumberVerified()
             );
             if (registeredUser) {
-                return ResponseCode.REGISTRATION_201;
+                ApiResponseStatus apiResponseStatus = new ApiResponseStatus();
+                apiResponseStatus.setId(ResponseId.FAILURE);
+                apiResponseStatus.setCode(ResponseCode.REGISTRATION_201);
+                UserResponse userResponse = new UserResponse();
+                userResponse.setApiResponseStatus(apiResponseStatus);
+                return userResponse;
             }
         }
 
@@ -45,7 +57,12 @@ public class ProfileService {
 
         User user = userMapper.dtoToEntity(request);
         userRepo.save(user);
-        return ResponseCode.REGISTRATION_100;
+        UserResponse userResponse = userMapper.entityToDto(user);
+        ApiResponseStatus apiResponseStatus = new ApiResponseStatus();
+        apiResponseStatus.setId(ResponseId.SUCCESS);
+        apiResponseStatus.setCode(ResponseCode.REGISTRATION_100);
+        userResponse.setApiResponseStatus(apiResponseStatus);
+        return userResponse;
     }
 
     public UserResponse getUser(UUID userId) {
@@ -73,17 +90,13 @@ public class ProfileService {
     }
 
     public List<User> getStudentByContact(String email, String phoneNumber) {
-        if (email != null && phoneNumber != null) {
-            return userRepo.getStudentByContact(email, phoneNumber);
+        if (email == null && phoneNumber == null) {
+            return Collections.emptyList();
         }
-
-        if (email != null) {
-            return Collections.singletonList(userRepo.getStudentByEmail(email));
-        } else if (phoneNumber != null) {
-            return Collections.singletonList(userRepo.getStudentByPhoneNumber(phoneNumber));
+        if (phoneNumber == null) {
+            return userRepo.findByContactEmail(email);
         }
-
-        return Collections.emptyList();
+        return userRepo.findByContactPhoneNumber(phoneNumber);
     }
 
     public List<UserResponse> getStudentByIdIn(List<UUID> studentIds) {
@@ -92,5 +105,23 @@ public class ProfileService {
 
     public Boolean validateAndUpdate(AddStudent request, UUID studentId) {
         return true;
+    }
+
+    public UUID getUser(LoginRequest loginRequest) {
+        List<User> users = userRepo.getUserByContact(loginRequest.getEmailId(), null);
+        if (CollectionUtils.isEmpty(users)) {
+            return null;
+        }
+
+        User selectedUser = users.get(0);
+        UserCredentials credentials = userCredentialsRepo.findById(selectedUser.getId()).orElse(null);
+        if (credentials == null || !PasswordUtil.matchPassword(loginRequest.getPassword(), credentials.getPassword())) {
+            return null;
+        }
+        return selectedUser.getId();
+    }
+
+    public List<User> getStudentByContactForInstitute(String email, String phoneNumber, UUID instituteId) {
+        return userRepo.getStudentByContactForInstitute(email, phoneNumber, instituteId);
     }
 }
