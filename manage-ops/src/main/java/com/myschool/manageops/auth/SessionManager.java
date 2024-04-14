@@ -1,7 +1,6 @@
 package com.myschool.manageops.auth;
 
 import com.myschool.commons.dto.AuthTokenResponse;
-import com.myschool.manageops.domain.entities.User;
 import com.myschool.manageops.domain.entities.UserSession;
 import com.myschool.manageops.domain.repository.UserSessionRepo;
 import com.myschool.utils.EncryptionUtil;
@@ -23,9 +22,9 @@ public class SessionManager {
     private final UserSessionRepo sessionRepo;
     private final JwtUtil jwtUtil;
 
-    public AuthTokenResponse createAuthTokenForUser(User user) {
+    public AuthTokenResponse createAuthTokenForUser(UUID userId) {
         UserSession newSession = new UserSession();
-        newSession.setUserId(user.getId());
+        newSession.setUserId(userId);
         newSession.setEndsOn(
                 Date.from(Instant.now().plus(AUTH_TOKEN_EXPIRY_TIME, ChronoUnit.MILLIS))
         );
@@ -33,12 +32,12 @@ public class SessionManager {
 
         String jwtToken = jwtUtil.getJwtTokenForUser(
                 EncryptionUtil.encrypt(
-                        user.getId() + ACCESS_TOKEN_SEPARATOR + newSession.getId()
+                        userId + ACCESS_TOKEN_SEPARATOR + newSession.getId()
                 )
         );
 
         return AuthTokenResponse.builder()
-                .userId(user.getId())
+                .userId(userId)
                 .authType(AUTH_TYPE)
                 .authToken(jwtToken)
                 .expiryTime(newSession.getEndsOn().toString())

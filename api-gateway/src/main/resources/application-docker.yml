@@ -17,9 +17,10 @@ spring:
           uri: http://discovery-server:8761
           predicates:
             - Path=/eureka-web**,/eureka/**
-  redis:
-    host: redis
-    port: 6379
+  data:
+    redis:
+      host: redis
+      port: 6379
 
 eureka:
   client:

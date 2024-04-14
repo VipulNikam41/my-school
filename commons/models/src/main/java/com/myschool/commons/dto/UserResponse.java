@@ -1,5 +1,6 @@
 package com.myschool.commons.dto;
 
+import com.myschool.commons.dto.support.BaseResponse;
 import com.myschool.constants.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserResponse {
+public class UserResponse extends BaseResponse {
     private UUID id;
     private ProfilePictureResponse profilePicture;
     private String name;

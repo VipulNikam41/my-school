@@ -42,3 +42,8 @@ validation:
     - "^/healthcheck$"
     - "^/actuator.*"
     - "/dashboard/login/profile/user"
+
+service:
+  endpoint:
+    payments: http://payments
+    syllabus-hub: http://syllabus-hub

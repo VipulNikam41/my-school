@@ -16,7 +16,7 @@ spec:
         - name: payments
           image: vipuldoger/payments:1.0
           ports:
-            - containerPort: 9423
+            - containerPort: 3417
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
@@ -40,5 +40,5 @@ spec:
     app: payments
   ports:
     - protocol: TCP
-      port: 9423
-      targetPort: 9423
+      port: 3417
+      targetPort: 3417
