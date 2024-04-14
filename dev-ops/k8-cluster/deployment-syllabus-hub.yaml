@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syllabus-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syllabus-hub
+  template:
+    metadata:
+      labels:
+        app: syllabus-hub
+    spec:
+      containers:
+        - name: syllabus-hub
+          image: vipuldoger/syllabus-hub:1.0
+          ports:
+            - containerPort: 3417
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          volumeMounts:
+            - name: syllabus-hub-logs
+              mountPath: /home/app/syllabus-hub/logs
+              subPath: syllabus-hub.log
+      volumes:
+        - name: syllabus-hub-logs
+          persistentVolumeClaim:
+            claimName: logs-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: syllabus-hub
+spec:
+  selector:
+    app: syllabus-hub
+  ports:
+    - protocol: TCP
+      port: 3417
+      targetPort: 3417

@@ -47,7 +47,7 @@ public class ConsolePage {
     }
 
     @PostMapping(ConsoleApi.UPDATE_STAFF)
-    public Boolean updateStaff(@PathVariable StaffRequest request, @PathVariable UUID instituteId, @RequestParam UUID staffId) {
+    public Boolean updateStaff(@RequestBody StaffRequest request, @PathVariable UUID instituteId, @RequestParam UUID staffId) {
         return staffService.updateStaff(request, instituteId, staffId);
     }
 }

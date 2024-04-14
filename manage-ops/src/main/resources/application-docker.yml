@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 3417
 
 spring:
   application:
@@ -27,6 +27,9 @@ spring:
       group-id: instituteEventId
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  redis:
+    host: redis
+    port: 6379
 
 logging:
   level:
@@ -46,3 +49,8 @@ management:
   health:
     circuitbreakers:
       enabled: true
+
+service:
+  endpoint:
+    payments: http://payments:3417
+    syllabus-hub: http://syllabus-hub:3417

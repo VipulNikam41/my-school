@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manage-ops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manage-ops
+  template:
+    metadata:
+      labels:
+        app: manage-ops
+    spec:
+      containers:
+        - name: manage-ops
+          image: vipuldoger/manage-ops:1.0
+          ports:
+            - containerPort: 3417
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          volumeMounts:
+            - name: manage-ops-logs
+              mountPath: /home/app/manage-ops/logs
+              subPath: manage-ops.log
+      volumes:
+        - name: manage-ops-logs
+          persistentVolumeClaim:
+            claimName: logs-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: management-ops
+spec:
+  selector:
+    app: manage-ops
+  ports:
+    - protocol: TCP
+      port: 3417
+      targetPort: 3417

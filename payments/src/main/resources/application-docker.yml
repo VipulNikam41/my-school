@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 3417
 
 spring:
   application:
@@ -22,3 +22,5 @@ eureka:
     service-url:
       defaultZone: http://discovery-server:8761/eureka/
     register-with-eureka: true
+  instance:
+    preferIpAddress: true

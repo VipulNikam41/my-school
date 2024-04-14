@@ -1,9 +1,7 @@
 package com.myschool.manageops.service;
 
 import com.myschool.commons.dto.*;
-import com.myschool.commons.event.NewInstituteEvent;
 import com.myschool.commons.repository.ContactRepo;
-import com.myschool.constants.Events;
 import com.myschool.manageops.domain.entities.Course;
 import com.myschool.manageops.domain.entities.Institute;
 import com.myschool.manageops.domain.entities.Staff;
@@ -12,8 +10,8 @@ import com.myschool.manageops.domain.mapper.InstituteMapper;
 import com.myschool.manageops.domain.mapper.StaffMapper;
 import com.myschool.manageops.domain.repository.CourseRepo;
 import com.myschool.manageops.domain.repository.InstituteRepo;
+import com.myschool.manageops.event.EventPublisher;
 import lombok.RequiredArgsConstructor;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public class InstituteService {
     private final StaffMapper staffMapper;
     private final CourseMapper courseMapper;
 
-    private final KafkaTemplate<String, NewInstituteEvent> kafkaTemplate;
+    private final EventPublisher eventPublisher;
 
     public void validateAndAdd(InstituteRequest request) {
         this.validateAndAdd(request, null);
@@ -86,8 +84,6 @@ public class InstituteService {
 
         contactRepo.save(institute.getContact());
         instituteRepo.save(institute);
-        NewInstituteEvent newInstituteEvent = new NewInstituteEvent();
-        newInstituteEvent.setInstituteId(institute.getId());
-        kafkaTemplate.send(Events.NEW_INSTITUTE, newInstituteEvent);
+        eventPublisher.publishNewInstituteEvent(institute.getId());
     }
 }

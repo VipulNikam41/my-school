@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discovery-server
+  template:
+    metadata:
+      labels:
+        app: discovery-server
+    spec:
+      containers:
+        - name: discovery-server
+          image: vipuldoger/discovery-server:1.0
+          ports:
+            - containerPort: 8761
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          volumeMounts:
+            - name: discovery-server-logs
+              mountPath: /home/app/discovery-server/logs
+              subPath: discovery-server.log
+      volumes:
+        - name: discovery-server-logs
+          persistentVolumeClaim:
+            claimName: logs-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-server
+spec:
+  selector:
+    app: discovery-server
+  ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: vipuldoger/api-gateway:1.0
+          ports:
+            - containerPort: 1234
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          volumeMounts:
+            - name: api-gateway-logs
+              mountPath: /home/app/api-gateway/logs
+              subPath: api-gateway.log
+      volumes:
+        - name: api-gateway-logs
+          persistentVolumeClaim:
+            claimName: logs-volume
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - protocol: TCP
+      port: 1234
+      targetPort: 1234
+      nodePort: 30001
+  type: LoadBalancer

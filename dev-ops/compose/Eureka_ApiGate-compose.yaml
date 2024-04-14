@@ -6,9 +6,9 @@ services:
     ports:
       - 8761:8761
     volumes:
-      - ${LOG_DIR}/discovery-server.log:/home/app/discovery-server/logs/discovery-server.log
+      - ${LOG_DIR}/discovery-server:/home/app/discovery-server/logs
     environment:
-      SPRING_PROFILES_ACTIVE: dev
+      SPRING_PROFILES_ACTIVE: docker
     networks:
       - school-house
 
@@ -20,7 +20,7 @@ services:
     ports:
       - 1234:1234
     volumes:
-      - ${LOG_DIR}/api-gateway.log:/home/app/api-gateway/logs/api-gateway.log
+      - ${LOG_DIR}/api-gateway:/home/app/api-gateway/logs
     environment:
       SPRING_PROFILES_ACTIVE: docker
     networks:
