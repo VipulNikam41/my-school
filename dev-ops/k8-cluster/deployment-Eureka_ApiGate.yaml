@@ -89,5 +89,5 @@ spec:
     - protocol: TCP
       port: 1234
       targetPort: 1234
-      nodePort: 30001
-  type: LoadBalancer
+#      nodePort: 30001
+#  type: LoadBalancer
